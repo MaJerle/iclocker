@@ -1,0 +1,118 @@
+<div class="modal-dialog modal-fullscreen" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('product-hunt') }} {{ __('Build product') }} {{ product.Product.name }}
+            </div>
+        </div>
+        <div class="modal-body">
+			{{ flash('all')|raw }}
+			<form
+				method="POST"
+				class="form ajax form-horizontal" 
+				id="products_build_form"
+				action="{{ url('products_build', {product_id: product.Product.id}) }}"
+				data-ajax-target="modal_main_content"
+				data-changebrowserlink="no"
+			>
+			
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('product-hunt')|raw }} {{ __('Product') }}</h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label class="control-label col-md-3">{{ __('Product') }}</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ product.Product.name }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{ __('Description') }}</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ product.Product.description|nl2br }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{ __('Elements count') }}</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ product.Product.elements_count }} ({{ product.Product.elements_count_all }})</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{ __('Number of products') }}</label>
+							<div class="col-md-9">
+								<select name="product_count" id="product_built_count" data-product="{{ product.Product.id }}">
+								{% for i in range(0, 10) %}
+									<option value="{{ i }}"{% if values.product_count == i %} selected="selected"{% endif %}>{{ i }}</option>
+								{% endfor %}
+								</select>
+								<span class="help-block">{{ __('Select number of products you want to make to remove elements count from database.') }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('database')|raw }} {{ __('Elements in product') }}</h2>
+					</div>
+					<div class="x_content">
+						<span class="help-block">{{ __('Table shows elements for single product. When multiple products are chosen to be build, values will be multiplied when decreasing values from database.') }}</span>
+						<span class="help-block">{{ __('Please check elements list if elements matches numbers you use from your local database. You can enter other value if necessary.') }}</span>
+						<div class="table-responsive">
+							<table class="table table-striped responsive-utilities jambo_table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>{{ __('Element') }}</th>
+										<th>{{ __('Quantity') }}</th>
+										<th>{{ __('Warning quantity') }}</th>
+										<th>{{ __('Quantity for single product') }}</th>
+										<th>{{ __('Total quantity decreased') }}</th>
+									</tr>
+								</thead>
+								<tbody>
+								{% for element in product.Element %}
+									<tr>
+										<td>{{ loop.index }}</td>
+										<td><span title="{{ element.description }}">{{ element.name }}</span></td>
+										<td>{{ element.quantity }}</td>
+										<td>{{ element.warning_quantity }}</td>
+										<td class="product_element_single_count" data-id="{{ element.id }}" data-product="{{ product.Product.id }}">{{ element.ElementProduct.element_count }}</td>
+										<td><input type="number" class="form-control" name="element[{{ element.id }}]" value="{{ values.element[element.id] }}" id="product_element_single_count_total_{{ element.id }}" /></td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</form>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-submit-form="products_build_form" id="products_build_button">{{ __('Build product') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal" id="products_close_button">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+	jQuery(document).ready(function() {
+		jQuery('#product_built_count').change(function() {
+			var id = jQuery(this).data('product');
+			var val = parseInt(jQuery(this).val());
+
+			jQuery('.product_element_single_count[data-product="' + id + '"]').each(function() {
+				var newId = 'product_element_single_count_total_' + jQuery(this).data('id');
+				var count = parseInt(jQuery(this).html());
+
+				console.log(newId, count);
+
+				jQuery('#' + newId).val(count * val);
+			})
+		});
+	});
+
+</script>

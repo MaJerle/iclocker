@@ -1,0 +1,158 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+{% if is_modal %}
+<div class="modal-dialog modal-fullscreen" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+			{% if product %}
+				{{ fa('database')|raw }} {{ __('Elements for %s')|format(product.Product.name) }}
+			{% else %}
+				{{ fa('database')|raw }} {{ __('Elements') }}
+			{% endif %}
+            </div>
+        </div>
+        <div class="modal-body">
+{% endif %}
+	{{ flash('all')|raw }}
+{% if not is_modal %}
+	<div class="x_panel">
+		<div class="x_title">
+		{% if product %}
+			<h2>{{ fa('database')|raw }} {{ __('Elements for product') }} <small>{{ product.Product.name }}</small></h2>
+		{% else %}
+			<h2>{{ fa('database')|raw }} {{ __('Elements') }}</h2>
+		{% endif %}
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('elements_add') }}" class="ajax">{{ fa('plus') }} {{ __('Add new') }}</a></li>
+				<li><a href="{{ url('categories_add') }}?modal=1" class="ajax" data-modal="modal_main" data-ajax-target="modal_main" data-changebrowserlink="no">{{ fa('plus')|raw }} {{ __('Add new category') }}</a></li>
+	            <!--<li><a class="collapse-link">{{ fa('chevron-up')|raw }}</a></li>-->
+
+				<li><a href="{{ url('users_settings', {'settings': 'elements_index'}) }}" class="ajax" data-modal="modal_main" data-ajax-target="modal_main" data-changebrowserlink="no">{{ fa('cog') }} {{ __('Settings') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+{% endif %}
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table dt-responsive"
+			{% if not product and not is_modal %}
+				id="table_elements" data-processing="true" data-serverside="true" data-ajax="{{ url('elements_list_data') }}"
+			{% endif %}
+			{% if category_id %}
+				data-urlparams="{&quot;category_id&quot;:{{ category_id }}}"
+			{% endif %}
+				>
+					<thead>
+						<tr>
+							<th class="table_td_nr" data-column="count">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr" data-column="id">{{ __('ID') }}</th>
+						{% endif %}
+							<th data-column="name">{{ __('Name') }}</th>
+							<th class="table_td_nr" data-column="quan">{{ __('Quantity') }}</th>
+						{% if product %}
+							<th class="table_td_nr" data-column="prod_quan">{{ __('Quantity for product') }}</th>
+						{% endif %}
+						{% if get_user_setting('show_element_warningquantity') %}
+							<th class="table_td_nr" data-column="war_quan">{{ __('Quantity') }} {{ fa('exclamation') }}</th>
+						{% endif %}
+						{% if get_user_setting('show_element_category') %}
+							<th data-column="cat">{{ __('Category') }}</th>
+						{% endif %}
+						{% if get_user_setting('show_element_description') %}
+							<th data-column="desc">{{ __('Description') }}</th>
+						{% endif %}
+						<!--{% if get_user_setting('show_element_properties') %}
+							<th data-column="prop">{{ __('Properties') }}</th>
+						{% endif %}-->
+						{% if is_admin() or get_user_setting('show_element_created') %}
+							<th data-column="created">{{ __('Created') }}</th>
+						{% endif %}
+						{% if not is_modal %}
+							<th class="table_td_actions" data-column="actions" data-class="icons">{{ __('Actions') }}</th>
+						{% endif %}
+						</tr>
+					</thead>
+					<tbody>
+					{% for element in elements %}
+						<tr{% if element.Element.quantity == 0 %} class="danger"{% elseif element.Element.quantity < element.Element.warning_quantity %} class="warning"{% endif %} id="elements_row_{{ element.Element.id }}">
+						{% include 'elements_index_row.html' %}
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+{% if not is_modal %}
+		</div>
+	</div>
+{% endif %}
+	<script type="text/javascript">
+
+		//Return url for updates
+		function elements_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+
+			return '{{ url("elements_update") }}'.replace(':element_id', id);
+		}
+
+		//Get options for elements
+		function elements_GetOptions(name) {
+			switch (name) {
+				case 'category_id':
+					return {
+					{% for c in categories %}
+						"{{ c.Category.id }}": "{{ c.Category.name }}",
+					{% endfor %}
+					};
+			}
+
+			return {};
+		}
+
+		jQuery(document).ready(function() {
+			//When properties are updated on element
+			jQuery('body').on('element_properties_updated', function(e) {
+				var el = e.element_id || false;
+				if (!el) {
+					return;
+				}
+
+				var a = jQuery('<a></a>')
+					.attr('href', '{{ url("elements_row", {element_id: "__element__"}) }}'.replace('__element__', el))
+					.data('ajax-target', 'elements_row_' + el)
+					.data('changebrowserlink', 'no');
+				DoAjax(a, e);
+			});
+
+			//When settings are updated for elements display
+			jQuery('body').on('settings_updated', function(e) {
+				var a = jQuery('<a></a>')
+					.attr('href', window.location.href)
+					.data('changebrowserlink', 'no');
+				DoAjax(a, e);
+			});
+
+			//On row change!
+			jQuery('.inline_edit').change(function() {
+				var isQuantity = jQuery(this).hasClass('element_quantity');
+
+				console.log(isQuantity);
+			});
+		});
+
+	</script>
+{% if is_modal %}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn button_cancel" data-dismiss="modal">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

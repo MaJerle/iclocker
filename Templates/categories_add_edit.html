@@ -1,0 +1,134 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+{% if in_modal %}
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('cubes')|raw }} {% if action == 'edit' %}{{ __('Edit category') }}{% else %}{{ __('Add category') }}{% endif %}
+            </div>
+        </div>
+        <div class="modal-body">
+{% endif %}
+			{{ flash('all')|raw }}
+			<form 
+				method="POST"
+				class="form ajax form-horizontal" 
+				id="categories_add_form"
+			{% if action == 'add' %} 
+				action="{{ url('categories_add') }}{% if in_modal %}?modal=1{% endif %}"
+			{% else %}
+				action="{{ url('categories_edit', {category_id: record.Category.id}) }}{% if in_modal %}?modal=1{% endif %}"
+			{% endif %}
+			{% if in_modal %}
+				data-ajax-target="modal_main_content"
+				data-changebrowserlink="no"
+			{% endif %}
+			>
+			{% if not in_modal %}
+				<div class="page-title">
+					<div class="title_left">
+						{% if action == 'edit' %}{{ __('Edit category') }}{% else %}{{ __('Add category') }}{% endif %}
+					</div>
+					<div class="title_right">
+						{{ form_buttons(action)|raw }}
+					</div>
+				</div>
+			{% endif %}
+				<div class="row">
+					<div class="{% if in_modal %}col-lg-12{% else %}col-lg-8 col-md-12{% endif %}">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>{{ fa('cubes')|raw }} {{ __('Category') }} <small>{{ record.Category.name }}</small></h2>
+							</div>
+							<div class="x_content">
+								<div class="form-group">
+									<label for="categoryName" class="col-md-3 control-label">
+										{{ __('Name *') }}
+										{{ form_error('name')|raw }}
+									</label>
+									<div class="col-md-9">
+										<input class="form-control" id="categoryName" type="text" name="name" value="{{ values.name }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="categoryDescription" class="col-md-3 control-label">
+										{{ __('Description') }}
+										{{ form_error('description')|raw }}
+									</label>
+									<div class="col-md-9">
+										<textarea name="description" id="categoryDescription" class="form-control">{{ values.description }}</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="categoryProperties" class="col-md-3 control-label">
+										{{ __('Properties') }}
+										{{ form_error('property')|raw }}
+									</label>
+									<div class="col-md-9">
+									{% if properties|length > 0 %}
+										<select class="form-control" id="categoryProperties" multiple="multiple" name="property[]" size="10">		
+										{% for prop in properties %}
+											<option value="{{ prop.Property.id }}"{% if prop.Property.id in values.property %} selected="selected"{% endif %}>{{ prop.Property.name }}</option>
+										{% endfor %}
+										</select>
+										<div class="help-block">
+											<button class="btn btn-primary select-all" data-select="categoryProperties">{{ __('Select all properties') }}</button>
+											<button class="btn btn-primary select-none" data-select="categoryProperties">{{ __('Select none properties') }}</button>
+										</div>
+									{% else %}
+										{{ __('There is no properties available for category. You must add properties to connect them to category.') }}
+									{% endif %}
+									</div>
+								</div>
+							{% if action == 'edit' %}
+								<div class="form-group">
+									<label for="" class="col-md-3 control-label">
+										{{ __('Elements count') }}
+									</label>
+									<div class="col-md-9">
+											<a href="{{ url('elements_list_category', {'category_id': record.Category.id}) }}?modal=1" class="ajax" data-modal="modal_main" data-changebrowserlink="no" data-ajax-target="modal_main"><button class="btn btn-primary button-sm" type="button">{{ record.Category.elements_count }}</button></a>
+											<a href="{{ url('elements_add', {category_id: record.Category.id}) }}?modal=1" class="ajax" data-modal="modal_main" data-changebrowserlink="no" data-ajax-target="modal_main"><button class="btn btn-primary button-sm" type="button">{{ fa('plus') }} {{ __('Add element to category') }}</button></a>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-md-3 control-label">
+										{{ __('Created') }}
+									</label>
+									<div class="col-md-9">
+										<p class="form-control-static">{{ get_event_user_datetime(record.CreatedBy, record.Category.created_at) }}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-md-3 control-label">
+										{{ __('Modified') }}
+									</label>
+									<div class="col-md-9">
+										<p class="form-control-static">{{ get_event_user_datetime(record.ModifiedBy, record.Category.modified_at) }}</p>
+									</div>
+								</div>
+							{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="{% if in_modal %}col-lg-12{% else %}col-lg-4 col-md-6{% endif %}">
+						{% include 'comments.html' %}
+					</div>
+				</div>
+			</form>
+{% if in_modal %}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-submit-form="categories_add_form" id="categories_add_button">{{ __('Save category') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal" id="categories_close_form">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

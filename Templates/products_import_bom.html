@@ -1,0 +1,60 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+<form method="post">
+	{{ flash('all')|raw }}
+	<div class="page-title">
+		<div class="title_left">
+			{{ __('Import BOM') }}
+		</div>
+		<div class="title_right">
+			{{ form_buttons(action)|raw }}
+		</div>
+	</div>
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('database')|raw }} {{ __('Elements') }}</h2>
+		</div>
+		<div class="x_content">
+			<table class="table table-striped responsive-utilities jambo_table">
+				<thead>
+					<tr>
+						<th class="table_td_nr">{{ __('#') }}</th>
+						<th>{{ __('Name') }}</th>
+						<th>{{ __('Quantity') }}</th>
+						<th>{{ __('Element') }}</th>
+						<th class="table_td_actions">{{ __('Actions') }}</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for k,e in values %}
+					<tr>
+						<td>{{ loop.index }}</td>
+						<td>
+							{{ e.name }}
+							<input type="hidden" name="element[{{ k }}][name]" value="{{ e.name }}" />
+						</td>
+						<td>
+							<input type="text" class="form-control" name="element[{{ k }}][quantity]" value="{{ e.quantity }}" /></td>
+						<td>
+							<select name="element[{{ k }}][element]">
+								<option value="">{{ __('Select element') }}</option>
+							{% for element in elements %}
+								<option value="{{ element.Element.id }}"{% if element.Element.id == e.element.id %} selected="selected"{% endif %}>{{ element.Element.name }}</option>
+							{% endfor %}
+							</select>
+						</td>
+						<td class="icons">
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</form>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

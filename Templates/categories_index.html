@@ -1,0 +1,66 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('cubes')|raw }} {{ __('Categories') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('categories_add') }}" class="ajax"> {{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Description') }}</th>
+							<th>{{ __('Elements count') }}</th>
+							<th>{{ __('Created') }}</th>
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for cat in categories %}
+						<tr>
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ cat.Category.id }}</td>
+						{% endif %}
+							<td class="inline_edit" data-what="name" data-url-func="categories_GetUpdateUrl" data-id="{{ cat.Category.id }}">{{ cat.Category.name }}</td>
+							<td class="inline_edit" data-what="description" data-inputtype="textarea" data-url-func="categories_GetUpdateUrl" data-id="{{ cat.Category.id }}">{{ cat.Category.description }}</td>
+							<td><a href="{{ url('elements_list_category', {'category_id': cat.Category.id}) }}" class="ajax" title="{{ __('View elements in category') }}">{{ cat.Category.elements_count }}</a></td>
+							<td>{{ get_user_fullname(cat.CreatedBy)|raw }}, {{ get_eventdatetime(cat.Category.created_at) }}</td>
+							<td class="icons">
+								<a href="{{ url('comments_view', {type: get_comments_type('category'), foreign_id: cat.Category.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments')|raw }}</a>
+								<a href="{{ url('elements_add', {'category_id': cat.Category.id}) }}?modal=1" class="ajax" data-modal="modal_main" data-ajax-target="modal_main" data-changebrowserlink="no" title="{{ __('Add new element to this category')}}">{{ fa('plus')|raw }}</a>
+								<a href="{{ url('categories_edit', {'category_id': cat.Category.id}) }}" title="{{ __('Edit category')}}" class="ajax">{{ fa('pencil')|raw }}</a>
+								<a href="{{ url('categories_delete', {'category_id': cat.Category.id}) }}" title="{{ __('Delete category and all dependancies')}}" data-close-after-confirm="yes" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no">{{ fa('trash')|raw }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		//Return url for updates
+		function categories_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+
+			return '{{ url("categories_update") }}'.replace(':category_id', id);
+		}
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

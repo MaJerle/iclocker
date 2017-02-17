@@ -1,0 +1,95 @@
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('shopping-basket') }} {{ __('Add element to order') }}
+            </div>
+        </div>
+        <div class="modal-body">
+			<div id="elements-order">
+				<form method="post" class="ajax form-horizontal" id="elements_orders_form" action="{{ url('elements_order', {'element_id': element.Element.id }) }}" data-ajax-target="modal_main_content" data-changebrowserlink="no">
+				{% for order in orders %}
+					{% for key, value in v.Elementorder %}
+						<input type="hidden" name="{{ key }}" value="{{ value }}" />
+					{% endfor %}
+					{% if order.Elementorder.id in values|keys %}
+						{% set vals = values[order.Elementorder.id] %}
+					{% else %}
+						{% set vals = [] %}
+					{% endif %}
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>{{ order.Elementorder.name }}</h2>
+							</div>
+							<div class="x_content">
+								{% if order.Elementorder.id in success|keys %}
+									{% if not success[order.Elementorder.id] %}
+									<span class="text-danger">{{ __('Problems trying to update element to order. Please check input values!') }}</span>
+									{% else %}
+									<span class="text-success">{{ __('Element was successfully updated to order.') }}</span>
+									{% endif %}
+								{% endif %}
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										{{ __('Order created') }}
+									</label>
+									<div class="col-md-8">
+										<div class="form-control-static">
+											{{ get_datetime(order.Elementorder.datecreated) }}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										{{ __('Quantity type') }}
+									</label>
+									<div class="col-md-8">
+										<div class="form-control-static">
+											{% if order.Elementorder.quantity_type == '0' %}{{ __('Minimal') }}{% else %}{{ __('Desired') }}{% endif %}
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										{{ __('Minimal quantity *') }}
+									</label>
+									<div class="col-md-8">
+										<input type="number" name="{{ order.Elementorder.id }}[minquantity]" class="form-control" value="{{ vals.minquantity }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										{{ __('Desired quantity *') }}
+									</label>
+									<div class="col-md-8">
+										<input type="number" name="{{ order.Elementorder.id }}[desiredquantity]" class="form-control" value="{{ vals.desiredquantity }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label">
+										{{ __('Purpose *') }}
+									</label>
+									<div class="col-md-8">
+										<input type="text" name="{{ order.Elementorder.id }}[purpose]" class="form-control" value="{{ vals.purpose }}" />
+									</div>
+								</div>
+							</div>
+						</div>
+				{% else %}
+					{{ __('No available automatic orders for this element!') }}
+				{% endfor %}
+				</form>
+			</div>
+        </div>
+        <div class="modal-footer">
+        	<div class="pull-left">
+				<a class="ajax" href="{{ url('elements_order', {'element_id': element.Element.id }) }}" data-ajax-target="modal_main_content" data-changebrowserlink="no">
+					<button type="button" class="btn btn-primary">{{ fa('refresh')}} {{ __('Refresh') }}</button>
+				</a>
+        	</div>
+			<button type="submit" class="btn btn-success" data-submit-form="elements_orders_form">{{ __('Update orders') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>

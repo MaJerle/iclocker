@@ -1,0 +1,88 @@
+{% include 'front_header.html' %}
+<div class="front-title">
+	{{ __('Online inventory for your IC components.') }}
+</div>
+<div class="steps">
+	{{ flash('all')|raw }}
+	<div class="step">
+		<div class="step-top row">
+			<div class="step-left col-md-7">
+				<a data-toggle="lightbox" href="{{ template_prefix }}img/step_collections.png">
+					<img src="{{ template_prefix }}img/step_collections.png" />
+				</a>
+			</div>
+			<div class="step-right col-md-5">
+				<p>{{ __('Easily manage your collections of components so you always know what you are missing.') }}</p>
+				<p>{{ __('Share your collections with your colleagues and coworkers.') }}</p>
+			</div>
+		</div>
+		<div class="step-bottom">
+		{% if not CurrentUser.User %}
+			<a href="{{ url('register') }}">
+				<button type="button" class="btn btn-default">{{ __('SIGN UP - IT\'S FREE') }}</button>
+			</a>
+		{% else %}
+			<a href="{{ url('dashboard') }}">
+				<button type="button" class="btn btn-default">{{ __('GO TO APPLICATION') }}</button>
+			</a>
+		{% endif %}
+		</div>
+		<div class="step-separator"></div>
+	</div>
+	<div class="step">
+		<div class="step-top row">
+			<div class="step-left col-md-7">
+				<a data-toggle="lightbox" href="{{ template_prefix }}img/step_categories.png">
+					<img src="{{ template_prefix }}img/step_categories.png" />
+				</a>
+			</div>
+			<div class="step-right col-md-5">
+				<p>{{ __('Organize all components by elements, categories, properties and put them in collections.') }}</p>
+			</div>
+		</div>
+		<div class="step-separator"></div>
+	</div>
+	<div class="step">
+		<div class="step-top row">
+			<div class="step-left col-md-7">
+				<a data-toggle="lightbox" href="{{ template_prefix }}img/step_elements.png">
+					<img src="{{ template_prefix }}img/step_elements.png" />
+				</a>
+			</div>
+			<div class="step-right col-md-5">
+				<p>{{ __('The app will remind you which components are running low: yellow for almost out of stock and red for out of stock.') }}</p>
+			</div>
+		</div>
+		<div class="step-separator"></div>
+	</div>
+	<div class="step">
+		<div class="step-top row">
+			<div class="step-left col-md-7">
+				<a data-toggle="lightbox" href="{{ template_prefix }}img/step_orders.png">
+					<img src="{{ template_prefix }}img/step_orders.png" />
+				</a>
+			</div>
+			<div class="step-right col-md-5">
+				<p>{{ __('Add the information from your favourite component store and manage orders right from the app.') }}</p>
+			</div>
+		</div>
+		<div class="step-separator"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function ($) {
+		$(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+			event.preventDefault();
+			return $(this).ekkoLightbox({
+				onShown: function() {},
+				onContentLoaded: function() {},
+				onNavigate: function(direction, itemIndex) {}
+			});
+		});
+	});
+
+</script>
+
+
+{% include 'front_footer.html' %}

@@ -1,0 +1,154 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+{{ flash('all')|raw }}
+<form method="POST" class="form ajax form-horizontal">
+	<div class="page-title">
+		<div class="title_left">
+			{% if action == 'edit' %}{{ __('Edit profile') }}{% else %}{{ __('Add user') }}{% endif %}
+		</div>
+		<div class="title_right">
+			{{ form_buttons(action)|raw }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-{% if is_admin() %}8{% else %}12{% endif %}">
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>{{ fa('user') }} {{ __('Profile') }} <small>{{ record.User.full_name }}</small></h2>
+				</div>
+				<div class="bx_content">
+				{% if is_admin() %}
+					<div class="form-group">
+						<label for="userName" class="col-md-3 control-label">
+							{{ __('Username') }}
+							{{ form_error('username')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" id="userName" type="text" name="username" value="{{ values.username }}" />
+						</div>
+					</div>
+				{% else %}
+					<div class="form-group">
+						<label for="userName" class="col-md-3 control-label">
+							{{ __('Username') }}
+							{{ form_error('username')|raw }}
+						</label>
+						<div class="col-md-9">
+							<p class="form-control-static">
+								{{ record.User.username }}
+							</p>
+						</div>
+					</div>
+				{% endif %}
+					<div class="form-group">
+						<label for="firstName" class="col-md-3 control-label">
+							{{ __('Name *') }}
+							{{ form_error('first_name')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" id="firstName" type="text" name="first_name" value="{{ values.first_name }}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userSurname" class="col-md-3 control-label">
+							{{ __('Surname *') }}
+							{{ form_error('last_name')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" id="userSurname" type="text" name="last_name" value="{{ values.last_name }}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userPassword" class="col-md-3 control-label">
+							{{ __('Password') }}
+							{{ form_error('password')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" id="userPassword" type="password" name="password" value="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="userPassword2" class="col-md-3 control-label">
+							{{ __('Repeat password') }}
+							{{ form_error('password2')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" id="userPassword2" type="password" name="password2" value="" />
+						</div>
+					</div>
+				{% if is_admin() %}
+					<div class="form-group">
+						<label for="userisAdmin" class="col-md-3 control-label">
+							{{ __('Admin') }}
+							{{ form_error('access_group')|raw }}
+						</label>
+						<div class="col-md-9">
+							<input class="form-control" type="hidden" name="access_group" value="0" />
+							<input class="form-control" id="userisAdmin" type="checkbox" name="access_group" value="1"{% if values.access_group == 1 %} checked="checked"{% endif %} />
+						</div>
+					</div>
+				{% endif %}
+				{% if is_admin() %}
+					<div class="form-group">
+						<label for="collections" class="col-md-3 control-label">
+							{{ __('Collections') }}
+							{{ form_error('access_group')|raw }}
+						</label>
+						<div class="col-md-9">
+							<select class="form-control" name="collection[]" id="collections" multiple="multiple">
+							{% for col in collections %}
+								<option value="{{ col.Collection.id }}"{% if col.Collection.id in values.collections %} selected="selected"{% endif %}>{{ col.Collection.name }}</option>
+							{% endfor %}
+							</select>
+						</div>
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	{% if is_admin() %}
+		<div class="col-lg-4">
+			{% include 'comments.html' %}
+		</div>
+	{% endif %}
+	</div>
+</form>
+{% if is_admin() and action == 'edit' %}
+<div class="x_panel">
+	<div class="x_title">
+		<h2>{{ __('User logins') }}</h2>
+	</div>
+	<div class="x_content">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th class="table_td_nr">{{ __('#') }}</th>
+					<th class="table_td_nr">{{ __('ID') }}</th>
+					<th>{{ __('Token') }}</th>
+					<th>{{ __('Created at') }}</th>
+					<th>{{ __('Valid to') }}</th>
+					<th>{{ __('IP') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for token in tokens %}
+				<tr>
+					<td>{{ loop.index }}</td>
+					<td>{{ token.Usertoken.id }}</td>
+					<td>{{ token.Usertoken.token }}</td>
+					<td>{{ get_datetime(token.Usertoken.created_at) }}</td>
+					<td>{{ get_datetime(token.Usertoken.validto) }}</td>
+					<td>{{ token.Usertoken.ip }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endif %}
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

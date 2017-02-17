@@ -1,0 +1,80 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('dashboard')|raw }} {{ __('Collections') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('collections_add') }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Description') }}</th>
+							<th>{{ __('Categories') }}</th>
+							<th>{{ __('Elements') }}</th>
+							<th>{{ __('Properties') }}</th>
+							<th>{{ __('Products') }}</th>
+							<th>{{ __('Orders') }}</th>
+						{% if is_admin() %}
+							<th>{{ __('Created') }}</th>
+						{% endif %}
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for collection in collections %}
+						<tr>
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ collection.Collection.id }}</td>
+						{% endif %}
+							<td><a href="{{ url('elements_list', {'collection_id': collection.Collection.id}) }}">{{ collection.Collection.name }}</a></td>
+							<td>{{ collection.Collection.description }}</td>
+							<td><a class="ajax" href="{{ url('categories_list', {'collection_id': collection.Collection.id}) }}" title="{{ __('Number of categories: %d')|format(collection.Collection.categories_count) }}">
+								{{ collection.Collection.categories_count }} [{{ get_new_last_week(collection.Collection, 'categories_count', 'categories_count_new', 'categories_count_deleted', true)|raw }}]</a>
+							</td>
+							<td><a class="ajax" href="{{ url('elements_list', {'collection_id': collection.Collection.id}) }}" title="{{ __('Number of elements: %d')|format(collection.Collection.elements_count) }}">
+								{{ collection.Collection.elements_count }} [{{ get_new_last_week(collection.Collection, 'elements_count', 'elements_count_new', 'elements_count_deleted', true)|raw }}]</a>
+							</td>
+							<td><a class="ajax" href="{{ url('properties_list', {'collection_id': collection.Collection.id}) }}" title="{{ __('Number of properties: %d')|format(collection.Collection.properties_count) }}">
+								{{ collection.Collection.properties_count }} [{{ get_new_last_week(collection.Collection, 'properties_count', 'properties_count_new', 'properties_count_deleted', true)|raw }}]</a>
+							</td>
+							<td><a class="ajax" href="{{ url('products_list', {'collection_id': collection.Collection.id}) }}" title="{{ __('Number of products: %d')|format(collection.Collection.products_count) }}">
+								{{ collection.Collection.products_count }} [{{ get_new_last_week(collection.Collection, 'products_count', 'products_count_new', 'products_count_deleted', true)|raw }}]</a>
+							</td>
+							<td><a class="ajax" href="{{ url('orders_list', {'collection_id': collection.Collection.id}) }}" title="{{ __('Number of orders: %d')|format(collection.Collection.elementorders_count) }}">
+								{{ collection.Collection.elementorders_count }} [{{ get_new_last_week(collection.Collection, 'elementorders_count', 'elementorders_count_new', 'elementorders_count_deleted', true)|raw }}]</a>
+							</td>
+						{% if is_admin() %}
+							<td>{{ get_user_fullname(collection.CreatedBy)|raw }}, {{ get_eventdatetime(collection.Collection.created_at) }}</td>
+						{% endif %}
+							<td class="icons">
+							{% if collection.Collection.created_by == CurrentUser.User.id or is_admin() %}
+								<a class="ajax" href="{{ url('collections_edit', {'collection_id': collection.Collection.id}) }}" title="{{ __('Edit collection') }}">{{ fa('pencil')|raw }}</a>
+								<a class="delete" href="{{ url('collections_delete', {'collection_id': collection.Collection.id}) }}" title="{{ __('Delete collection and all dependencies')}}" data-confirm="{{ __('Are you sure you wanna delete collection %s?')|format(collection.Collection.name) }}">{{ fa('trash')|raw }}</a>
+							{% else %}
+								<a class="delete" href="{{ url('collections_delete', {'collection_id': collection.Collection.id}) }}?link=1" title="{{ __('Leave collection')}}" data-confirm="{{ __('Are you sure you wanna leave collection %s?')|format(collection.Collection.name) }}">{{ fa('close')|raw }}</a>
+							{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

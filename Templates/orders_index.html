@@ -1,0 +1,132 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('shopping-basket')|raw }} {{ __('Orders') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('orders_add') }}" class="ajax"> {{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Status') }}</th>
+							<th>{{ __('Created') }}</th>
+							<th>{{ __('Ordered') }}</th>
+							<th>{{ __('Quantity type') }}</th>
+							<th>{{ __('Elements count') }}</th>
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for order in orders %}
+					{% if order.Elementorder.status == '1' %}
+						<tr>
+					{% elseif order.Elementorder.status == '2' %}
+						<tr class="success">
+					{% else %}
+						<tr class="danger">
+					{% endif %}
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ order.Elementorder.id }}</td>
+						{% endif %}
+							<td class="inline_edit" data-what="name" data-url-func="orders_GetUpdateUrl" data-id="{{ order.Elementorder.id }}">{{ order.Elementorder.name }}</td>
+							<td class="inline_edit" data-what="status" data-url-func="orders_GetUpdateUrl" data-success-func="orders_UpdateSuccess" data-inputtype="select" data-options-func="orders_GetOptions" data-id="{{ order.Elementorder.id }}" data-options-selected="{{ order.Elementorder.status }}">{{ get_order_status(order) }}</td>
+							<td>{{ get_eventdatetime(order.Elementorder.datecreated) }}</td>
+							<td>
+								{% if order.Elementorder.status == 1 %}
+									{{ __('Order opened') }}
+								{% elseif order.Elementorder.status == 0 %}
+									{{ __('Order canceled') }}
+								{% else %}
+									{{ get_eventdatetime(order.Elementorder.dateordered) }}
+								{% endif %}
+							</td>
+							<td class="inline_edit" data-what="quantity_type" data-url-func="orders_GetUpdateUrl" data-inputtype="select" data-options-func="orders_GetOptions" data-id="{{ order.Elementorder.id }}" data-options-selected="{{ order.Elementorder.quantity_type }}">{% if order.Elementorder.quantity_type == '0' %}{{ __('Minimal') }}{% else %}{{ __('Desired') }}{% endif %}</td>
+							<td><a href="{{ url('order_elements_list', {'elementorder_id': order.Elementorder.id}) }}" class="ajax">{{ order.Elementorder.orderelements_count }}</a></td>
+							<td class="icons">
+								<a href="{{ url('comments_view', {type: get_comments_type('order'), foreign_id: order.Elementorder.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments')|raw }}</a>
+							{% if order.Elementorder.status == '1' %}
+								<a href="{{ url('orders_elements_add', {elementorder_id: order.Elementorder.id}) }}" title="{{ __('Add new element to order') }}" class="ajax">{{ fa('plus')|raw }}</a>
+							{% endif %}
+							{% if order.Elementorder.status == '2' and order.Elementorder.synced == '0' %}
+								<a 
+									href="{{ url('orders_sync', {elementorder_id: order.Elementorder.id}) }}" 
+									title="{{ __('Sync elements from order') }}" 
+									data-confirm="{{ __('Are you sure you want to sync elements from order with elements in database? Elements on order will be ignored if they do not match in database! Please choose responsibly!') }}">{{ fa('refresh')|raw }}</a>
+							{% endif %}
+								<a href="{{ url('order_elements_list', {'elementorder_id': order.Elementorder.id}) }}" class="ajax" title="{{ __('View order elements') }}">{{ fa('database')|raw }}</a>
+								<a href="{{ url('orders_edit', {'elementorder_id': order.Elementorder.id}) }}" title="{{ __('Edit order')}}" class="ajax">{{ fa('pencil')|raw }}</a>
+								<a href="{{ url('orders_delete', {'elementorder_id': order.Elementorder.id}) }}" title="{{ __('Delete this order and all its dependants')}}" data-confirm="{{ __('Are you sure you wanna delete order %s?')|format(order.Elementorder.name) }}">{{ fa('trash')|raw }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		//Synced success callback
+		function orders_syncedSuccess(element, data, jqXHR) {
+			//Hide element after success ajax request
+			element.fadeOut();
+		}
+
+		//Orders synced error
+		function orders_syncedError(element, jqXHR) {
+
+		}
+
+		//Return url for updates
+		function orders_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+
+			return '{{ url("orders_update") }}'.replace(':elementorder_id', id);
+		}
+
+		//Get options for orders
+		function orders_GetOptions(name) {
+			switch (name) {
+				case 'status':
+					return {
+						0: '{{ __("Canceled") }}',
+						1: '{{ __("Open") }}',
+						2: '{{ __("Ordered") }}'
+					};
+				case 'quantity_type':
+					return {
+						0: '{{ __("Minimal") }}',
+						1: '{{ __("Desired") }}'
+					};
+			}
+
+			return {};
+		}
+
+		function orders_UpdateSuccess(obj, what, value) {
+			if (what == 'status') {
+				if (status == 0) {
+
+				}
+			}
+			
+			obj.parent().addClass('danger').removeClass('success');
+		}
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

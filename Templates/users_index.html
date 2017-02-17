@@ -1,0 +1,53 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('user')|raw }} {{ __('Users') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('users_add') }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+							<th class="table_td_nr">{{ __('ID') }}</th>
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Surname') }}</th>
+							<th>{{ __('Username') }}</th>
+							<th>{{ __('Join date') }}</th>
+							<th>{{ __('Last login') }}</th>
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ loop.index }}</td>
+							<td>{{ user.User.id }}</td>
+							<td>{{ user.User.first_name }}</td>
+							<td>{{ user.User.last_name }}</td>
+							<td>{{ user.User.username }}</td>
+							<td>{{ get_eventdatetime(user.User.created_at) }}</td>
+							<td>{{ get_eventdatetime(user.User.last_login) }}</td>
+							<td class="icons">
+								<a href="{{ url('comments_view', {type: get_comments_type('user'), foreign_id: user.User.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments')|raw }}</a>
+								<a href="{{ url('users_edit', {'user_id': user.User.id}) }}" title="{{ __('Edit user') }}" class="ajax">{{ fa('pencil')|raw }}</a>
+								<a href="{{ url('users_delete', {'user_id': user.User.id}) }}" title="{{ __('Delete user and all dependencies?')}}" data-confirm="{{ __('Are you sure you wanna delete user %s %s?')|format(user.User.first_name, user.User.last_name) }}" class="delete">{{ fa('trash')|raw }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

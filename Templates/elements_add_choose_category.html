@@ -1,0 +1,50 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('cubes')|raw }} {{ __('Choose category') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('categories_add') }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Description') }}</th>
+							<th>{{ __('Elements count') }}</th>
+							<th>{{ __('Created by') }}</th>
+							<th>{{ __('Created at') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for category in categories %}
+						<tr>
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ category.Category.id }}</td>
+						{% endif %}
+							<td><a href="{{ url('elements_add', {'category_id': category.Category.id}) }}" class="ajax">{{ category.Category.name }}</a></td>
+							<td>{{ category.Category.description }}</td>
+							<td><a href="{{ url('elements_list_category', {'category_id': category.Category.id}) }}" class="ajax">{{ category.Category.elements_count }}</a></td>
+							<td>{{ get_user_fullname(category.CreatedBy)|raw }}</td>
+							<td>{{ get_eventdatetime(category.Category.created_at) }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

@@ -1,0 +1,32 @@
+<div class="x_panel">
+	<div class="x_title">
+		<h2>{{ fa('cubes')|raw }} {{ __('Changelog') }}</h2>
+	</div>
+	<div class="x_content">
+		<div class="table-responsive">
+			<table class="table table-striped responsive-utilities jambo_table dt-responsive">
+			{% if changelog_type == 'element' %}
+				<thead>
+					<tr>
+						<th>{{ __('Quantity') }}</th>
+						<th>{{ __('Reason') }}</th>
+						<th>{{ __('Created by') }}</th>
+						<th>{{ __('Date') }}</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% set quantity = -1 %}
+				{% for c in changelog %}
+					<tr>
+						<td>{{ c.Element.quantity }}</td>
+						<td>{{ c.Element.revision_reason }}</td>
+						<td>{{ get_user_fullname(c.CreatedBy) }}</td>
+						<td>{{ get_eventdatetime(c.Element.created_at)|raw }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+		</div>
+	</div>
+</div>

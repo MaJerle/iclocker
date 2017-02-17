@@ -1,0 +1,82 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('tags')|raw }} {{ __('Properties') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('properties_add') }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Description') }}</th>
+							<th>{{ __('Unit') }}</th>
+							<th>{{ __('Data type') }}</th>
+							<th>{{ __('Created') }}</th>
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for prop in properties %}
+						<tr>
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ prop.Property.id }}</td>
+						{% endif %}
+							<td class="inline_edit" data-what="name" data-url-func="properties_GetUpdateUrl" data-id="{{ prop.Property.id }}">{{ prop.Property.name }}</td>
+							<td class="inline_edit" data-what="description" data-inputtype="textarea" data-url-func="properties_GetUpdateUrl" data-id="{{ prop.Property.id }}">{{ prop.Property.description }}</td>
+							<td class="inline_edit" data-what="unit" data-url-func="properties_GetUpdateUrl" data-id="{{ prop.Property.id }}">{{ prop.Property.unit }}</td>
+							<td class="inline_edit" data-what="data_type" data-url-func="properties_GetUpdateUrl" data-inputtype="select" data-options-func="properties_GetOptions" data-id="{{ prop.Property.id }}" data-options-selected="{{ prop.Property.data_type }}">{{ get_property_datatype(prop.Property) }}</td>
+							<td>{{ get_user_fullname(prop.CreatedBy)|raw }}, {{ get_eventdatetime(prop.Property.created_at) }}</td>
+							<td class="icons">
+								<a href="{{ url('comments_view', {type: get_comments_type('property'), foreign_id: prop.Property.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments')|raw }}</a>
+								<a href="{{ url('properties_choices', {'property_id': prop.Property.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('Manage property choices') }}">{{ fa('tags')|raw }}</a>
+								<a href="{{ url('properties_edit', {'property_id': prop.Property.id}) }}" title="{{ __('Edit property')}}" class="ajax">{{ fa('pencil')|raw }}</a>
+								<a href="{{ url('properties_delete', {'property_id': prop.Property.id}) }}" title="{{ __('Delete this property and all its dependants')}}" data-confirm="{{ __('Are you sure you wanna delete property %s?')|format(prop.Property.name) }}" class="delete">{{ fa('trash')|raw }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		//Return url for updates
+		function properties_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+
+			return '{{ url("properties_update") }}'.replace(':property_id', id);
+		}
+
+		//Get options for orders
+		function properties_GetOptions(name) {
+			switch (name) {
+				case 'data_type':
+					return {
+						1: '{{ __("String") }}',
+						2: '{{ __("Number") }}',
+						3: '{{ __("File upload") }}'
+					};
+			}
+
+			return {};
+		}
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

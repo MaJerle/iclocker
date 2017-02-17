@@ -1,0 +1,93 @@
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('cog') }} {{ __('Manage settings') }}
+            </div>
+        </div>
+        <div class="modal-body">
+			{{ flash('all')|raw }}
+			<form
+				method="POST"
+				class="form ajax form-horizontal" 
+				id="users_settings_form"
+				action="{{ url('users_settings', {settings: settings_type}) }}"
+				data-ajax-target="modal_main_content"
+				data-changebrowserlink="no"
+				data-ajax-success="settings_updated">
+			{% if settings_type == 'elements_index' %}
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+						{{ __('Show description') }}
+					</label>
+					<div class="col-md-8">
+						{{ get_user_setting_form('show_element_description') }}
+						<div class="help-block">
+							{{ __('Shows description column on elements list.') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+						{{ __('Show category') }}
+					</label>
+					<div class="col-md-8">
+						{{ get_user_setting_form('show_element_category') }}
+						<div class="help-block">
+							{{ __('Shows category column on elements list.') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+						{{ __('Show properties') }}
+					</label>
+					<div class="col-md-8">
+						{{ get_user_setting_form('show_element_properties') }}
+						<div class="help-block">
+							{{ __('Shows properties column on elements list.') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+						{{ __('Show warning quantity') }}
+					</label>
+					<div class="col-md-8">
+						{{ get_user_setting_form('show_element_warningquantity') }}
+						<div class="help-block">
+							{{ __('Shows warning quantity column on elements list.') }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+						{{ __('Show created info') }}
+					</label>
+					<div class="col-md-8">
+						{{ get_user_setting_form('show_element_created') }}
+						<div class="help-block">
+							{{ __('Shows date and user who created element.') }}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+			</form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-submit-form="users_settings_form">{{ __('Update') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+	function settings_updated() {
+		jQuery('body').trigger({
+			type: 'settings_updated',
+			settings_type: '{{ settings_type }}'
+		});
+	}
+
+</script>

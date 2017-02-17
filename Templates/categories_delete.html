@@ -1,0 +1,38 @@
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('cubes') }} {{ __('Delete category') }}
+            </div>
+        </div>
+        <div class="modal-body">
+			<form class="ajax form-horizontal" method="post" data-ajax-target="modal_main_content" data-changebrowserlink="no" action="{{ url('categories_delete', {'category_id': category_id}) }}" id="categories_delete_form">
+                <p>{{ __('Are you sure you wanna delete category?') }}</p>
+                <input type="hidden" name="delete" value="1" />
+            {% if elements %}
+                <div class="form-group">
+                    <label class="col-md-4 col-sm-4 control-label">
+                        {{ __('Move elements') }}
+                    </label>
+                    <div class="col-md-8 col-sm-8">
+                        <div class="help-block">
+                            {{ __('Elements in this category have been found. If you want to move them to another category, select new category or they will be deleted with category.') }}
+                        </div>
+                        <select name="category_new">
+                            <option value="">{{ __('Select category') }}</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat.Category.id }}">{{ cat.Category.name }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            {% endif %}
+            </form>
+        </div>
+        <div class="modal-footer">
+			<button type="button" class="btn btn-danger" data-submit-form="categories_delete_form">{{ __('Delete category') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>

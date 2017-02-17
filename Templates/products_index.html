@@ -1,0 +1,68 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('product-hunt')|raw }} {{ __('Products') }}</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a href="{{ url('products_add') }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+			</ul>
+		</div>
+		<div class="x_content">
+			<div class="table-responsive">
+				<table class="table table-striped responsive-utilities jambo_table">
+					<thead>
+						<tr>
+							<th class="table_td_nr">{{ __('#') }}</th>
+						{% if is_admin() %}
+							<th class="table_td_nr">{{ __('ID') }}</th>
+						{% endif %}
+							<th>{{ __('Name') }}</th>
+							<th>{{ __('Quantity') }}</th>
+							<th>{{ __('Description') }}</th>
+							<th>{{ __('Elements') }}</th>
+							<th>{{ __('Created') }}</th>
+							<th class="table_td_actions">{{ __('Actions') }}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for product in products %}
+						<tr>
+							<td>{{ loop.index }}</td>
+						{% if is_admin() %}
+							<td>{{ product.Product.id }}</td>
+						{% endif %}
+							<td class="inline_edit" data-what="name" data-url-func="products_GetUpdateUrl" data-id="{{ product.Product.id }}">{{ product.Product.name }}</td>
+							<td class="inline_edit" data-what="quantity" data-url-func="products_GetUpdateUrl" data-id="{{ product.Product.id }}" data-inputtype="number">{{ product.Product.quantity }}</td>
+							<td class="inline_edit" data-what="description" data-inputtype="textarea" data-url-func="products_GetUpdateUrl" data-inputtype="textarea" data-id="{{ product.Product.id }}">{{ product.Product.description }}</td>
+							<td><a class="ajax" href="{{ url('elements_list') }}?product_id={{ product.Product.id }}&modal=1" class="ajax" data-modal="modal_main" data-changebrowserlink="no" data-ajax-target="modal_main">{{ product.Product.elements_count }} ({% if product.Product.elements_count_all != '' %}{{ product.Product.elements_count_all }}{% else %}0{% endif %})</a></td>
+							<td>{{ get_user_fullname(product.CreatedBy)|raw }}, {{ get_eventdatetime(product.Product.created_at) }}</td>
+							<td class="icons">
+								<a href="{{ url('comments_view', {type: get_comments_type('product'), foreign_id: product.Product.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments')|raw }}</a>
+								<a href="{{ url('products_build', {'product_id': product.Product.id}) }}?modal=1" title="{{ __('Make product') }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no">{{ fa('plus')|raw }}</a>
+								<a href="{{ url('products_edit', {'product_id': product.Product.id}) }}" title="{{ __('Edit product') }}" class="ajax">{{ fa('pencil')|raw }}</a>
+								<a href="{{ url('products_delete', {'product_id': product.Product.id}) }}" title="{{ __('Delete product and all dependencies')}}" data-confirm="{{ __('Are you sure you wanna delete product %s?')|format(product.Product.name) }}" class="delete">{{ fa('trash')|raw }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+		//Return url for updates
+		function products_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+
+			return '{{ url("products_update") }}'.replace(':product_id', id);
+		}
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

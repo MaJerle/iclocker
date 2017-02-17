@@ -1,0 +1,134 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+{% if action == 'edit' %}
+	<div class="row tile_count">
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('users')|raw }} </i> {{ __('Total users') }}</span>
+				<div class="count">{{ record.Collection.users_count }}</div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'users_count', 'users_count_new', 'users_count_deleted')|raw }}</span>
+			</div>
+		</div>
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('cubes')|raw }} </i> {{ __('Total categories') }}</span>
+				<div class="count"><a href="{{ url('categories_list', {'collection_id': record.id}) }}">{{ record.Collection.categories_count }}</a></div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'categories_count', 'categories_count_new', 'categories_count_deleted')|raw }}</span>
+			</div>
+		</div>
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('database')|raw }} {{ __('Total elements') }}</span>
+				<div class="count"><a href="{{ url('elements_list', {'collection_id': record.id}) }}">{{ record.Collection.elements_count }}</a></div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'elements_count', 'elements_count_new', 'elements_count_deleted')|raw }}</span>
+			</div>
+		</div>
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('tags')|raw }} </i> {{ __('Total properties') }}</span>
+				<div class="count"><a href="{{ url('properties_list', {'collection_id': record.id}) }}">{{ record.Collection.properties_count }}</a></div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'properties_count', 'properties_count_new', 'properties_count_deleted')|raw }}</span>
+			</div>
+		</div>
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('product-hunt')|raw }} </i> {{ __('Total products') }}</span>
+				<div class="count"><a href="{{ url('products_list', {'collection_id': record.id}) }}">{{ record.Collection.products_count }}</a></div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'products_count', 'products_count_new', 'products_count_deleted')|raw }}</span>
+			</div>
+		</div>
+		<div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+			<div class="left"></div>
+			<div class="right">
+				<span class="count_top">{{ fa('shopping-basket')|raw }} </i> {{ __('Total orders') }}</span>
+				<div class="count"><a href="{{ url('orders_list', {'collection_id': record.id}) }}">{{ record.Collection.elementorders_count }}</a></div>
+				<span class="count_bottom">{{ get_new_last_week(record.Collection, 'elementorders_count', 'elementorders_count_new', 'elementorders_count_deleted')|raw }}</span>
+			</div>
+		</div>
+	</div>
+{% endif %}
+	{{ flash('all')|raw }}
+	<form method="POST" class="form ajax form-horizontal">
+		<div class="page-title">
+			<div class="title_left">
+				{% if action == 'edit' %}{{ __('Edit collection') }}{% else %}{{ __('Add collection') }}{% endif %}
+			</div>
+			<div class="title_right">
+				{{ form_buttons(action)|raw }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('dashboard')|raw }} {{ __('Collection') }} <small>{{ record.Collection.name }}</small></h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label for="collectionName" class="col-md-3 control-label">
+								{{ __('Name *') }}
+								{{ form_error('name')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="collectionName" type="text" name="name" value="{{ values.name }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="collectionDescription" class="col-md-3 control-label">
+								{{ __('Description *') }}
+								{{ form_error('description')|raw }}
+							</label>
+							<div class="col-md-9">
+								<textarea class="form-control" id="collectionDescription" name="description">{{ values.description }}</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="collectionDescription" class="col-md-3 control-label">
+								{{ __('Users') }}
+								{{ form_error('user')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select class="form-control" name="user[]" multiple="multiple" size="10">
+								{% for u in users %}
+									<option value="{{ u.User.id }}"{% if u.User.id in values.user %} selected="selected"{% endif %}>{{ u.User.full_name }}</option>
+								{% endfor %}
+								</select>
+							</div>
+						</div>
+					{% if action == 'edit' %}
+						<div class="form-group">
+							<label for="" class="col-md-3 control-label">
+								{{ __('Created') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.CreatedBy, record.Collection.created_at) }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-md-3 control-label">
+								{{ __('Modified') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.ModifiedBy, record.Collection.modified_at) }}</p>
+							</div>
+						</div>
+					{% endif %}
+					</div>
+				</div>	
+			</div>
+			<div class="col-md-4">
+				{% include 'comments.html' %}		
+			</div>
+		</div>
+	</form>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

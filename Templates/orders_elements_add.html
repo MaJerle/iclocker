@@ -1,0 +1,146 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<form method="POST" class="form ajax form-horizontal" id="orderelement_add_form">
+		<div class="page-title">
+			<div class="title_left">
+				{{ __('Add element to order') }} <small>{{ order.Elementorder.name }}</small>
+			</div>
+			<div class="title_right">
+				{{ form_buttons('add')|raw }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('database')|raw }} {{ __('Element') }}</h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label for="elementNumber" class="col-md-3 control-label">
+								{{ __('Order name') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ order.Elementorder.name }}</p>
+							</div>
+						</div>
+						{% if order.Property|length > 0 %}
+						<div class="form-group">
+							<label for="elementNumber" class="col-md-3 control-label">
+								{{ __('Properties') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+								{% for p in order.Property %}
+									{{ p.name }}
+								{% endfor %}
+									<br />
+									{{ __('List of properties used for element search.') }}
+								</p>
+							</div>
+						</div>
+						{% endif %}
+						<div class="form-group">
+							<label for="orderelementElement" class="col-md-3 control-label">
+								{{ __('Select element') }}
+								{{ form_error('element_id')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select class="form-control" name="element_id" id="orderelementElement">
+									<option value="">{{ __('Choose from dropdown') }}</option>
+								{% for element in elements %}
+									<option data-number="{{ element.ElementProperty.property_value }}" data-description="{{ element.Element.description }}" value="{{ element.Element.id }}"{% if element.Element.id == values.element_id %} selected="selected"{% endif %}>{{ element.Element.name }}</option>
+								{% endfor %}
+								</select>
+								<div class="help-block">
+									{{ __('If element is not found in database, then it is recommended you add it. When you adding new element, do not forget to set property value which order uses if you want to see element on list.') }}									
+								</div>
+								<div class="help-block">
+									<a href="{{ url('elements_add') }}?modal=1" class="ajax" data-modal="modal_main" data-changebrowserlink="no" data-ajax-target="modal_main"><button class="btn btn-primary button-sm" type="button">{{ fa('plus') }} {{ __('Add element to database') }}</button></a>
+									<button class="btn btn-primary button-sm" type="submit" name="button_reload" id="orderelements_button_reload">{{ fa('refresh') }} {{ __('Reload elements') }}</button>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="elementNumber" class="col-md-3 control-label">
+								{{ __('Order number *') }}
+								{{ form_error('number')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="elementNumber" type="text" name="number" value="{{ values.number }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="minquantity" class="col-md-3 control-label">
+								{{ __('Minimal quantity *') }}
+								{{ form_error('minquantity')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="minquantity" type="number" name="minquantity" value="{{ values.minquantity }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="desiredquantity" class="col-md-3 control-label">
+								{{ __('Desired quantity *') }}
+								{{ form_error('desiredquantity')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="desiredquantity" type="number" name="desiredquantity" value="{{ values.desiredquantity }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="purpose" class="col-md-3 control-label">
+								{{ __('Purpose *') }}
+								{{ form_error('purpose')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="purpose" type="text" name="purpose" value="{{ values.purpose }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="elementDescription" class="col-md-3 control-label">
+								{{ __('Description') }}
+								{{ form_error('description')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="elementDescription" type="text" name="description" value="{{ values.description }}" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		
+		jQuery(document).ready(function() {
+			jQuery('#orderelementElement').change(function() {
+				//id value
+				value = jQuery(this).val();
+
+				//Find values
+				jQuery(this).children().each(function() {
+					if (jQuery(this).val() == value) {				
+						//Get values
+						number = jQuery(this).data('number');
+						description = jQuery(this).data('description');
+
+						//Fill values
+						jQuery('#elementNumber').val(number);
+						jQuery('#elementDescription').val(description);
+
+						//Stop .each execution
+						return false;
+					}
+				});
+			});
+		});
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

@@ -1,0 +1,14 @@
+{
+    "require": {
+        "Slim/Slim": "^2.6",
+        "slim/views": "^0.1.3",
+        "twig/twig": "1.*",
+        "vlucas/valitron": "^1.2",
+		"sepia/po-parser": "dev-master",
+        "slim/pdo": "dev-master",
+        "phpmailer/phpmailer": "~5.2"
+    },
+    "autoload": {
+        "classmap": [""]
+    }
+}

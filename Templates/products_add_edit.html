@@ -1,0 +1,263 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<form method="POST" class="form ajax form-horizontal">
+		<div class="page-title">
+			<div class="title_left">
+				{% if action == 'edit' %}{{ __('Edit product') }}{% else %}{{ __('Add product') }}{% endif %}
+			</div>
+			<div class="title_right">
+				{{ form_buttons(action)|raw }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('product-hunt')|raw }} {{ __('Product') }} <small>{{ record.Product.name }}</small></h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label for="productName" class="col-md-3 control-label">
+								{{ __('Name *') }}
+								{{ form_error('name')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="productName" type="text" name="name" value="{{ values.name }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="productDescription" class="col-md-3 control-label">
+								{{ __('Description') }}
+								{{ form_error('description')|raw }}
+							</label>
+							<div class="col-md-9">
+								<textarea class="form-control" id="productDescription" name="description">{{ values.description }}</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="productQuantity" class="col-md-3 control-label">
+								{{ __('Quantity') }}
+								{{ form_error('quantity')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="productQuantity" type="number" name="quantity" value="{{ values.quantity }}" />
+							</div>
+						</div>
+					{% if action == 'edit' %}
+						<div class="form-group">
+							<label for="" class="col-md-3 control-label">
+								{{ __('Number of products') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ productionCount }}
+								{% if not productionCount %}
+									{% for u in usedElements %}
+										{% if u.element_count > u.quantity %}
+											<div>{{ u.name }}: <span class="bold">{{ u.count }}</span> (<span class="bold">{{ u.quantity }}</span>)</div>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								</p>
+								<p class="help-block">
+									{{ __('Number of products you can currently build with elements in storage.') }}
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-md-3 control-label">
+								{{ __('Created') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.CreatedBy, record.Product.created_at) }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-md-3 control-label">
+								{{ __('Modified') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.ModifiedBy, record.Product.modified_at) }}</p>
+							</div>
+						</div>
+					{% endif %}
+					</div>
+				</div>
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('database')|raw }} {{ __('Sub product') }}</h2>
+						<ul class="nav navbar-right panel_toolbox">
+						{% if products|length > 0 %}
+							<li id="button_add_subproduct"><a href="">{{ fa('plus')|raw }} {{ __('Add') }}</a></li>
+						{% endif %}
+						</ul>
+					</div>	
+					<div class="x_content">
+					{% if products|length > 0 %}
+						<div id="subproducts_box">
+						{% for id, count in values.subproduct %}
+							<div class="col-lg-4 col-md-6 col-sm-6 subproduct_row">
+								<div class="row">
+									<div class="col-xs-8">
+										<label>{{ __('Sub product') }} <span class="subproduct_remove_icon">{{ fa('trash')|raw }}</span></label>
+										<select class="form-control" name="subproduct_id[]">
+											<option value="">{{ __('Choose sub product') }}</option>
+										{% for product in products %}
+											<option value="{{ product.Product.id }}"{% if product.Product.id == id %} selected="selected"{% endif %}>{{ product.Product.name }}</option>
+										{% endfor %}
+										</select>
+									</div>
+									<div class="col-xs-4">
+										<label>{{ __('Count') }}</label>
+										<input class="form-control" type="number" value="{{ count }}" name="subproduct_value[]" min="0" />
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+						<span id="subproducts_box_empty"{% if values.subproduct|length > 0%} style="display: none";{% endif %}>{{ __('There is no sub products assigned to product.') }}</span>
+					{% else %}
+						{{ __('There is no available products.') }}
+					{% endif %}
+					</div>	
+				</div>
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('database')|raw }} {{ __('Elements in product') }}</h2>
+						<ul class="nav navbar-right panel_toolbox">
+						{% if elements|length > 0 %}
+							<li id="button_add_element"><a href="">{{ fa('plus')|raw }} {{ __('Add') }}</a></li>
+						{% endif %}
+						</ul>
+					</div>	
+					<div class="x_content">
+					{% if elements|length > 0 %}
+						<div id="elements_products_box">
+						{% for id, count in values.element %}
+							<div class="col-lg-4 col-md-6 col-sm-6 element_product_row">
+								<div class="row">
+									<div class="col-xs-8">
+										<label>{{ __('Element') }} <span class="element_remove_icon">{{ fa('trash')|raw }}</span></label>
+										<select class="form-control" name="element_id[]">
+											<option value="">{{ __('Choose element') }}</option>
+										{% for element in elements %}
+											<option value="{{ element.Element.id }}"{% if element.Element.id == id %} selected="selected"{% endif %}>{{ element.Element.name }} - ({{ element.Element.quantity }})</option>
+										{% endfor %}
+										</select>
+									</div>
+									<div class="col-xs-4">
+										<label>{{ __('Count') }}</label>
+										<input class="form-control" type="number" value="{{ count }}" name="element_value[]" min="0" />
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+						<span id="elements_products_box_empty"{% if values.element|length > 0%} style="display: none";{% endif %}>{{ __('There is no element assigned to product.') }}</span>
+					{% else %}
+						{{ __('There is no available elements. You must add new element first.') }}
+					{% endif %}
+					</div>	
+				</div>
+			</div>
+			<div class="col-lg-4">
+				{% include 'comments.html' %}
+			</div>
+		</div>
+	</form>
+	<div id="subproducts_add_box" style="display: none">
+		<div class="col-lg-4 col-md-6 col-sm-6 subproduct_row">
+			<div class="row">
+				<div class="col-xs-8">
+					<label>{{ __('Sub product') }} <span class="subproduct_remove_icon">{{ fa('trash')|raw }}</span></label>
+					<select class="form-control" name="subproduct_id[]" style="display: none;">
+						<option value="">{{ __('Choose sub product') }}</option>
+					{% for product in products %}
+						<option value="{{ product.Product.id }}">{{ product.Product.name }}</option>
+					{% endfor %}
+					</select>
+				</div>
+				<div class="col-xs-4">
+					<label>{{ __('Count') }}</label>
+					<input class="form-control" type="number" value="" name="subproduct_value[]" min="0" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="elements_add_box" style="display: none">
+		<div class="col-lg-4 col-md-6 col-sm-6 element_product_row">
+			<div class="row">
+				<div class="col-xs-8">
+					<label>{{ __('Element') }} <span class="element_remove_icon">{{ fa('trash')|raw }}</span></label>
+					<select class="form-control" name="element_id[]" style="display: none;">
+						<option value="">{{ __('Choose element') }}</option>
+					{% for element in elements %}
+						<option value="{{ element.Element.id }}">{{ element.Element.name }} - ({{ element.Element.quantity }})</option>
+					{% endfor %}
+					</select>
+				</div>
+				<div class="col-xs-4">
+					<label>{{ __('Count') }}</label>
+					<input class="form-control" type="number" value="" name="element_value[]" min="0" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+	jQuery(document).ready(function() {
+		//Click on add new element
+		jQuery('#button_add_element').click(function(e) {
+			//Disable default functionality
+			e.preventDefault();
+
+			//Add new value
+			jQuery('#elements_products_box').append(jQuery('#elements_add_box').html());
+			jQuery('#elements_products_box_empty').hide();
+
+			//Reinit select box
+			InitSelect2();
+		});
+
+		//Click on remove icon
+		jQuery('#elements_products_box').on('click', '.element_remove_icon', function(e) {
+			//Remove element from DOM
+			jQuery(this).parent().parent().parent().parent().remove();
+
+			if (jQuery('#elements_products_box').children().length == 0) {
+				jQuery('#elements_products_box_empty').show();
+			}
+		});
+
+
+		//Click on add new element
+		jQuery('#button_add_subproduct').click(function(e) {
+			//Disable default functionality
+			e.preventDefault();
+
+			//Add new value
+			jQuery('#subproducts_box').append(jQuery('#subproducts_add_box').html());
+			jQuery('#subproducts_box_empty').hide();
+
+			//Reinit select box
+			InitSelect2();
+		});
+
+		//Click on remove icon
+		jQuery('#subproducts_box').on('click', '.subproduct_remove_icon', function(e) {
+			//Remove element from DOM
+			jQuery(this).parent().parent().parent().parent().remove();
+
+			if (jQuery('#subproducts_box').children().length == 0) {
+				jQuery('#subproducts_box_empty').show();
+			}
+		});
+	});
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

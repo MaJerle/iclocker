@@ -1,0 +1,1460 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MESI mRecords v0.1\n"
+"POT-Creation-Date: 2016-01-05 08:57+0100\n"
+"PO-Revision-Date: 2016-01-05 08:58+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-Bookmarks: -1,-1,-1,-1,-1,-1,-1,49,-1,-1\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: languages/vendor\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: Controller/Base.php:32
+msgid "Authentication is required for this request!"
+msgstr ""
+
+#: Controller/Base.php:52 Controller/Base.php:54
+#: Controller/CollectionsController.php:22
+msgid "Permission denied!"
+msgstr ""
+
+#: Controller/CategoriesController.php:36
+msgid "Category has been successfully added."
+msgstr ""
+
+#: Controller/CategoriesController.php:39
+msgid "Problems with creating category!"
+msgstr ""
+
+#: Controller/CategoriesController.php:71
+msgid "Category has been successfully updated."
+msgstr ""
+
+#: Controller/CategoriesController.php:78
+msgid "Problems with updating category!"
+msgstr ""
+
+#: Controller/CategoriesController.php:105
+msgid "Category has been successfully deleted."
+msgstr ""
+
+#: Controller/CategoriesController.php:107
+msgid "Problems with deleting category!"
+msgstr ""
+
+#: Controller/CollectionsController.php:54
+msgid "Collection has been successfully added."
+msgstr ""
+
+#: Controller/CollectionsController.php:57
+msgid "Problems with creating collection!"
+msgstr ""
+
+#: Controller/CollectionsController.php:89
+msgid "Collection has been successfully updated."
+msgstr ""
+
+#: Controller/CollectionsController.php:96
+msgid "Problems with updating collection!"
+msgstr ""
+
+#: Controller/CollectionsController.php:124
+msgid "Collection has been successfully deleted."
+msgstr ""
+
+#: Controller/CollectionsController.php:126
+msgid "Problems with deleting collection!"
+msgstr ""
+
+#: Controller/ElementsController.php:72
+msgid "Bad idea!"
+msgstr ""
+
+#: Controller/ElementsController.php:96
+msgid "Element has been successfully added."
+msgstr ""
+
+#: Controller/ElementsController.php:99
+msgid "Problems with creating element!"
+msgstr ""
+
+#: Controller/ElementsController.php:200
+msgid "Element has been successfully updated."
+msgstr ""
+
+#: Controller/ElementsController.php:207
+msgid "Problems with updating element!"
+msgstr ""
+
+#: Controller/ElementsController.php:290
+msgid "Element has been successfully deleted."
+msgstr ""
+
+#: Controller/ElementsController.php:292
+msgid "Problems with deleting element!"
+msgstr ""
+
+#: Controller/ElementsController.php:321
+msgid "Element quantity has been changed."
+msgstr ""
+
+#: Controller/ElementsController.php:327
+msgid "Element quantity has not been changed."
+msgstr ""
+
+#: Controller/LoginController.php:35
+msgid "Username or password incorrect!"
+msgstr ""
+
+#: Controller/LoginController.php:60
+msgid ""
+"Account has been created and you have been automatically logged into system."
+msgstr ""
+
+#: Controller/LoginController.php:63
+msgid ""
+"Account has been created but there were problems with logging into system. "
+"Please try login manually."
+msgstr ""
+
+#: Controller/LoginController.php:67
+msgid "There were problems with registration. Please see errors below."
+msgstr ""
+
+#: Controller/OrdersController.php:36
+msgid "Order has been successfully added."
+msgstr ""
+
+#: Controller/OrdersController.php:39
+msgid "Problems with creating order!"
+msgstr ""
+
+#: Controller/OrdersController.php:66
+msgid "Order has been successfully updated."
+msgstr ""
+
+#: Controller/OrdersController.php:73
+msgid "Problems with updating order!"
+msgstr ""
+
+#: Controller/OrdersController.php:89
+msgid "Order has been successfully deleted."
+msgstr ""
+
+#: Controller/OrdersController.php:91
+msgid "Problems with deleting order!"
+msgstr ""
+
+#: Controller/OrdersController.php:161
+msgid "Bulk action successfully completed."
+msgstr ""
+
+#: Controller/OrdersController.php:163
+msgid "Bulk action failed!"
+msgstr ""
+
+#: Controller/OrdersController.php:196
+msgid "Element has been successfully added to order."
+msgstr ""
+
+#: Controller/OrdersController.php:199
+msgid "There were problems with adding new element to order!"
+msgstr ""
+
+#: Controller/OrdersController.php:242
+msgid "Element deleted successfully from order."
+msgstr ""
+
+#: Controller/OrdersController.php:244
+msgid "Element was not deleted from order!"
+msgstr ""
+
+#: Controller/ProductsController.php:53
+msgid "Product has been successfully created."
+msgstr ""
+
+#: Controller/ProductsController.php:56
+msgid "Problems with creating product!"
+msgstr ""
+
+#: Controller/ProductsController.php:93
+msgid "Product has been successfully updated."
+msgstr ""
+
+#: Controller/ProductsController.php:100
+msgid "Problems with updating product!"
+msgstr ""
+
+#: Controller/ProductsController.php:151
+msgid "Product has been successfully deleted."
+msgstr ""
+
+#: Controller/ProductsController.php:153
+msgid "Problems with deleting product!"
+msgstr ""
+
+#: Controller/PropertiesController.php:34
+msgid "Property has been successfully added."
+msgstr ""
+
+#: Controller/PropertiesController.php:37
+msgid "Problems with creating property!"
+msgstr ""
+
+#: Controller/PropertiesController.php:76
+msgid "Property has been successfully updated."
+msgstr ""
+
+#: Controller/PropertiesController.php:83
+msgid "Problems with updating property!"
+msgstr ""
+
+#: Controller/PropertiesController.php:110
+msgid "Property has been successfully deleted."
+msgstr ""
+
+#: Controller/PropertiesController.php:112
+msgid "Problems with deleting property!"
+msgstr ""
+
+#: Controller/UsersController.php:50
+msgid "User has been successfully added."
+msgstr ""
+
+#: Controller/UsersController.php:53
+msgid "Problems with creating user!"
+msgstr ""
+
+#: Controller/UsersController.php:89
+msgid "User has been successfully updated."
+msgstr ""
+
+#: Controller/UsersController.php:96
+msgid "Problems with updating user!"
+msgstr ""
+
+#: Controller/UsersController.php:136
+msgid "User has been successfully deleted."
+msgstr ""
+
+#: Controller/UsersController.php:138
+msgid "Problems with deleting user!"
+msgstr ""
+
+#: Inc/Controller.php:383
+msgid "Unknown error has occurred!"
+msgstr ""
+
+#: Inc/Helper.php:81 Inc/Helper.php:118
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:179
+msgid "Today"
+msgstr ""
+
+#: Inc/Helper.php:84 Inc/Helper.php:121
+msgid "Yesterday"
+msgstr ""
+
+#: Inc/Helper.php:294
+msgid "Loading, please wait.."
+msgstr ""
+
+#: Inc/Helper.php:316
+#, php-format
+msgid "%d-%d of %d"
+msgstr ""
+
+#: Inc/Helper.php:330
+msgid "<"
+msgstr ""
+
+#: Inc/Helper.php:335
+msgid ">"
+msgstr ""
+
+#: Inc/Helper.php:419
+msgid "Closed"
+msgstr ""
+
+#: Inc/Helper.php:420
+msgid "Open"
+msgstr ""
+
+#: Inc/Helper.php:421
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:49
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:80
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:83
+msgid "Ordered"
+msgstr ""
+
+#: Inc/Helper.php:423
+msgid "Unknown"
+msgstr ""
+
+#: Inc/Helper.php:490
+msgid "Save"
+msgstr ""
+
+#: Inc/Helper.php:492
+msgid "Apply"
+msgstr ""
+
+#: Inc/Helper.php:509
+msgid "View datasheet"
+msgstr ""
+
+#: Model/Category.php:139 Model/Collection.php:143 Model/Element.php:179
+#: Model/Elementorder.php:135 Model/Product.php:149 Model/Property.php:152
+msgid "Name is required!"
+msgstr ""
+
+#: Model/Category.php:140 Model/Category.php:153 Model/Elementorder.php:136
+#: Model/Elementorder.php:148 Model/Product.php:150 Model/Product.php:163
+#: Model/Property.php:153 Model/Property.php:172
+msgid "Name size is too small!"
+msgstr ""
+
+#: Model/Category.php:141 Model/Category.php:154
+msgid "Incorrect data format for category properties!"
+msgstr ""
+
+#: Model/Collection.php:144 Model/Collection.php:157 Model/Element.php:180
+#: Model/Element.php:196
+msgid "Name cannot be empty!"
+msgstr ""
+
+#: Model/Collection.php:145 Model/Collection.php:158
+msgid "Incorrect data format for collection users!"
+msgstr ""
+
+#: Model/Element.php:181
+msgid "Quantity is required!"
+msgstr ""
+
+#: Model/Element.php:182 Model/Element.php:198
+msgid "Quantity must be integer!"
+msgstr ""
+
+#: Model/Element.php:183 Model/Element.php:199
+msgid "Incorrect data format for element properties!"
+msgstr ""
+
+#: Model/Element.php:184 Model/Element.php:200
+msgid "Incorrect data format for element products!"
+msgstr ""
+
+#: Model/Orderelement.php:174
+msgid "Order element number is required!"
+msgstr ""
+
+#: Model/Orderelement.php:175 Model/Orderelement.php:193
+msgid "Order element number is too small!"
+msgstr ""
+
+#: Model/Orderelement.php:176
+msgid "Order element minimal quantity is required!"
+msgstr ""
+
+#: Model/Orderelement.php:177 Model/Orderelement.php:195
+msgid "Order element minimal quantity must be an integer!"
+msgstr ""
+
+#: Model/Orderelement.php:178
+msgid "Order element desired quantity is required!"
+msgstr ""
+
+#: Model/Orderelement.php:179 Model/Orderelement.php:197
+msgid "Order element desired quantity must be an integer!"
+msgstr ""
+
+#: Model/Orderelement.php:180
+msgid "Order element purpose is required!"
+msgstr ""
+
+#: Model/Orderelement.php:181 Model/Orderelement.php:199
+msgid "Order element purpose is too small!"
+msgstr ""
+
+#: Model/Product.php:151 Model/Product.php:164
+msgid "Incorrect data format for product elements!"
+msgstr ""
+
+#: Model/Property.php:154
+msgid "Data type is required!"
+msgstr ""
+
+#: Model/Property.php:155 Model/Property.php:174
+msgid "Data type size is too small!"
+msgstr ""
+
+#: Model/Property.php:156 Model/Property.php:175
+msgid "Data type must be integer!"
+msgstr ""
+
+#: Model/Property.php:157
+msgid "Unit is required!"
+msgstr ""
+
+#: Model/Property.php:158 Model/Property.php:177
+msgid "Unit size is too small!"
+msgstr ""
+
+#: Model/Property.php:159 Model/Property.php:178
+msgid "Incorrect data format for property categories!"
+msgstr ""
+
+#: Model/Property.php:160 Model/Property.php:179
+msgid "Incorrect data format for property options!"
+msgstr ""
+
+#: Model/Propertychoice.php:143
+msgid "Choice value is required!"
+msgstr ""
+
+#: Model/Propertychoice.php:144
+msgid "Choice value is too small!"
+msgstr ""
+
+#: Model/User.php:279 Model/User.php:335
+msgid "Username is required!"
+msgstr ""
+
+#: Model/User.php:280 Model/User.php:297 Model/User.php:316 Model/User.php:336
+msgid "Username must be a valid e-mail address!"
+msgstr ""
+
+#: Model/User.php:281 Model/User.php:298 Model/User.php:317 Model/User.php:337
+msgid "User with that e-mail already exists!"
+msgstr ""
+
+#: Model/User.php:282 Model/User.php:318 Model/User.php:338
+msgid "First name is required!"
+msgstr ""
+
+#: Model/User.php:283 Model/User.php:320 Model/User.php:339
+msgid "Last name is required!"
+msgstr ""
+
+#: Model/User.php:284 Model/User.php:340
+msgid "Incorrect data format for user collections!"
+msgstr ""
+
+#: Model/User.php:300 Model/User.php:319
+msgid "User name is too small!"
+msgstr ""
+
+#: Model/User.php:302 Model/User.php:321
+msgid "User surname is too small!"
+msgstr ""
+
+#: cache/20/20a15644a83ba9933a18d8acef305d820e69d65bc983e176bd5db2497d5dd0ff.php:22
+#: cache/20/20a15644a83ba9933a18d8acef305d820e69d65bc983e176bd5db2497d5dd0ff.php:29
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:98
+msgid "Edit category"
+msgstr ""
+
+#: cache/20/20a15644a83ba9933a18d8acef305d820e69d65bc983e176bd5db2497d5dd0ff.php:37
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:37
+#: cache/2d/2d424f524c5db4ef7a85e74fc0b3cb25dedffcefce25bd3fd5adf7bd1ac2c5a7.php:39
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:39
+#: cache/3b/3be0c1da57b5dcac3cff171c6b218b444cfe8a81c3f24a047506bc89d0f4e365.php:39
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:37
+#: cache/50/50b359a18531f6c9f196b31440f3bac05438fb269cecf040db3fe264eab35271.php:36
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:37
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:37
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:53
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:76
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:39
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:42
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:80
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:39
+#: cache/96/96700f312634605d0edce65551453369b51768e5a024063179f10bb5d70647a1.php:37
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:39
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:37
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:37
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:84
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:57
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:37
+msgid "Name"
+msgstr ""
+
+#: cache/20/20a15644a83ba9933a18d8acef305d820e69d65bc983e176bd5db2497d5dd0ff.php:59
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:408
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:57
+#: cache/96/96700f312634605d0edce65551453369b51768e5a024063179f10bb5d70647a1.php:59
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:49
+msgid "Properties"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:29
+msgid "MESI mSTORAGE"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:73
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:87
+msgid "Day_Sunday"
+msgstr "Sunday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:75
+msgid "Day_Monday"
+msgstr "Monday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:77
+msgid "Day_Tuesday"
+msgstr "Tuesday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:79
+msgid "Day_Wednesday"
+msgstr "Wednesday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:81
+msgid "Day_Thursday"
+msgstr "Thursday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:83
+msgid "Day_Friday"
+msgstr "Friday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:85
+msgid "Day_Saturday"
+msgstr "Saturday"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:91
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:105
+msgid "DayShort_Sunday"
+msgstr "Sun"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:93
+msgid "DayShort_Monday"
+msgstr "Mon"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:95
+msgid "DayShort_Tuesday"
+msgstr "Tue"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:97
+msgid "DayShort_Wednesday"
+msgstr "Wed"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:99
+msgid "DayShort_Thursday"
+msgstr "Thu"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:101
+msgid "DayShort_Friday"
+msgstr "Fri"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:103
+msgid "DayShort_Saturday"
+msgstr "Sat"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:109
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:123
+msgid "DayMin_Sunday"
+msgstr "Su"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:111
+msgid "DayMin_Monday"
+msgstr "Mo"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:113
+msgid "DayMin_Tuesday"
+msgstr "Tu"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:115
+msgid "DayMin_Wednesday"
+msgstr "We"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:117
+msgid "DayMin_Thursday"
+msgstr "Th"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:119
+msgid "DayMin_Friday"
+msgstr "Fr"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:121
+msgid "DayMin_Saturday"
+msgstr "Sa"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:127
+#: config.php:67
+msgid "January"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:129
+#: config.php:67
+msgid "February"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:131
+#: config.php:67
+msgid "March"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:133
+#: config.php:67
+msgid "April"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:135
+#: config.php:67
+msgid "May"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:137
+#: config.php:67
+msgid "June"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:139
+#: config.php:68
+msgid "July"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:141
+#: config.php:68
+msgid "August"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:143
+#: config.php:68
+msgid "September"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:145
+#: config.php:68
+msgid "October"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:147
+#: config.php:68
+msgid "November"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:149
+#: config.php:68
+msgid "December"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:153
+msgid "MonthShort_January"
+msgstr "Jan"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:155
+msgid "MonthShort_February"
+msgstr "Feb"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:157
+msgid "MonthShort_March"
+msgstr "Mar"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:159
+msgid "MonthShort_April"
+msgstr "Apr"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:161
+msgid "MonthShort_May"
+msgstr "May"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:163
+msgid "MonthShort_June"
+msgstr "Jun"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:165
+msgid "MonthShort_July"
+msgstr "Jul"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:167
+msgid "MonthShort_August"
+msgstr "Aug"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:169
+msgid "MonthShort_September"
+msgstr "Sep"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:171
+msgid "MonthShort_October"
+msgstr "Oct"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:173
+msgid "MonthShort_November"
+msgstr "Nov"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:175
+msgid "MonthShort_December"
+msgstr "Dec"
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:183
+msgid "Clear"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:241
+msgid "Toggle navigation"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:255
+msgid "mSTORAGE"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:276
+msgid "Logout"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:297
+msgid "Search..."
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:317
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:22
+msgid "Collections"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:326
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:359
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:388
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:417
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:446
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:475
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:510
+msgid "Add new"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:334
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:367
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:396
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:425
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:454
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:483
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:518
+msgid "View all"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:350
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:45
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:119
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:22
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:133
+msgid "Categories"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:379
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:49
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:22
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:45
+msgid "Elements"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:437
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:53
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:22
+msgid "Products"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:466
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:61
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:22
+msgid "Orders"
+msgstr ""
+
+#: cache/25/2501edcdace9839f26ceb84f8def71d1c2e49f149b6af5bb87be420091d67026.php:501
+#: cache/2d/2d424f524c5db4ef7a85e74fc0b3cb25dedffcefce25bd3fd5adf7bd1ac2c5a7.php:79
+#: cache/3b/3be0c1da57b5dcac3cff171c6b218b444cfe8a81c3f24a047506bc89d0f4e365.php:79
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:22
+msgid "Users"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:29
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:29
+#: cache/50/50b359a18531f6c9f196b31440f3bac05438fb269cecf040db3fe264eab35271.php:28
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:29
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:31
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:29
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:29
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:29
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:207
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:29
+msgid "#"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:33
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:33
+#: cache/50/50b359a18531f6c9f196b31440f3bac05438fb269cecf040db3fe264eab35271.php:32
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:33
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:35
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:33
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:39
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:33
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:33
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:211
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:33
+msgid "ID"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:41
+#: cache/2d/2d424f524c5db4ef7a85e74fc0b3cb25dedffcefce25bd3fd5adf7bd1ac2c5a7.php:57
+#: cache/3b/3be0c1da57b5dcac3cff171c6b218b444cfe8a81c3f24a047506bc89d0f4e365.php:57
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:55
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:158
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:57
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:57
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:41
+msgid "Description"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:151
+#: cache/3b/3be0c1da57b5dcac3cff171c6b218b444cfe8a81c3f24a047506bc89d0f4e365.php:22
+#: cache/3b/3be0c1da57b5dcac3cff171c6b218b444cfe8a81c3f24a047506bc89d0f4e365.php:31
+msgid "Edit collection"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:159
+msgid "Delete collection and all dependencies "
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:161
+msgid "Are you sure you want delete collection?"
+msgstr ""
+
+#: cache/25/25d904c48315496a46505a5b422be97a0a81fe1d0a58f9fe37f10b3c7d93a43c.php:193
+msgid "Add new collection"
+msgstr ""
+
+#: cache/2d/2d424f524c5db4ef7a85e74fc0b3cb25dedffcefce25bd3fd5adf7bd1ac2c5a7.php:22
+#: cache/2d/2d424f524c5db4ef7a85e74fc0b3cb25dedffcefce25bd3fd5adf7bd1ac2c5a7.php:31
+msgid "Add collection"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:22
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:31
+msgid "Add property"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:57
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:71
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:41
+msgid "Units"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:75
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:89
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:45
+msgid "Data type"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:90
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:104
+msgid "Integer"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:98
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:112
+msgid "Float"
+msgstr ""
+
+#: cache/35/3524f309501ee23474a19c0108780ff08ee96824e3db27265770b7e2af5591b3.php:106
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:120
+msgid "String"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:41
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:57
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:60
+msgid "Status"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:45
+msgid "Created"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:53
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:41
+msgid "Elements count"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:128
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:25
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:34
+msgid "Edit order"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:136
+msgid "Delete this order and all its dependants"
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:138
+msgid "Are you sure you want delete order? "
+msgstr ""
+
+#: cache/44/444e94936e75a26e0e6e686f5755de7971fc44df94e8f6e6400e33f24e8fbd21.php:164
+msgid "Add new order"
+msgstr ""
+
+#: cache/50/50b359a18531f6c9f196b31440f3bac05438fb269cecf040db3fe264eab35271.php:22
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:50
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:54
+msgid "Choose category"
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:44
+msgid "No data to show."
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:48
+msgid "Showing _START_ to _END_ of _TOTAL_ entries."
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:52
+msgid "No data in table."
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:56
+msgid "Search:"
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:60
+msgid "No matching records found."
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:66
+msgid "First"
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:70
+msgid "Last"
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:74
+msgid "Next"
+msgstr ""
+
+#: cache/52/52dd28e806ad9c1d9575c68f0803d093130fdf2115f92993bf9e959c56657493.php:78
+msgid "Previous"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:34
+msgid "Login to access"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:52
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:87
+msgid "Email address"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:57
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:99
+msgid "Enter email address"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:64
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:112
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:93
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:107
+msgid "Password"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:69
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:117
+msgid "Enter password"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:77
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:153
+msgid "Login"
+msgstr ""
+
+#: cache/53/531e82dd4878713b22218a29917e564462fbf281085c810b3e67bec00c34e41b.php:87
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:143
+msgid "Create account"
+msgstr ""
+
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:90
+msgid "Add new element to this category"
+msgstr ""
+
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:106
+msgid "Delete category and all dependancies"
+msgstr ""
+
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:108
+msgid "Are you sure you want delete category? "
+msgstr ""
+
+#: cache/53/5363610d12baa74ea697a92dd1581b4dd58c4ed793c78a0201bb643d683f36c6.php:134
+msgid "Add new category"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:22
+#, php-format
+msgid "Elements for order %s"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:39
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:86
+msgid "Order number"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:43
+msgid "Min quantity"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:47
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:283
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:122
+msgid "Desired quantity"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:51
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:140
+msgid "Purpose"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:149
+msgid "Edit order element"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:157
+msgid "Delete this element from order"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:159
+msgid "Are you sure you want delete element from order? "
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:186
+msgid "With selected"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:193
+msgid "Select action"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:197
+msgid "Set as ordered"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:201
+msgid "Set as canceled"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:205
+msgid "Set selected as ordered and others as canceled"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:214
+msgid "Update"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:225
+msgid "Add new element to order"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:234
+msgid "Open another order"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:266
+msgid "Export for order"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:273
+msgid "Quantity type"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:279
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:104
+msgid "Minimal quantity"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:293
+msgid "Export order"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:300
+msgid "Output"
+msgstr ""
+
+#: cache/5a/5ab3d833a0605e5ee5015e1f3ef377ac35c6165b7f9790fbaa54c5d7bb4102c7.php:363
+msgid "Please select elements for export!"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:41
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:94
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:75
+msgid "Surname"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:45
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:46
+msgid "Username"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:49
+msgid "Last login"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:104
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:24
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:49
+msgid "Edit user"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:112
+msgid "Delete user and all dependencies?"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:114
+msgid "Are you sure you want delete user?"
+msgstr ""
+
+#: cache/5f/5fc487fc16d6078016f324f31f7e3cecf15384dc56bc0acec45de27c04a425a5.php:140
+msgid "Add new user"
+msgstr ""
+
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:22
+#: cache/66/665df9a449cd82cda5ccb070da6f6ba93ed247c93ee278dcb33cb05edaa7594a.php:31
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:96
+msgid "Edit property"
+msgstr ""
+
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:22
+msgid "Add element to order"
+msgstr ""
+
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:33
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:94
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:164
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:139
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:209
+msgid "Element"
+msgstr ""
+
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:41
+msgid "Select element"
+msgstr ""
+
+#: cache/6b/6bb5080516fa360be2abd1c647d16fcc47a17598ab2383a3e2d83e4bfccca8d8.php:52
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:185
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:189
+msgid "Choose from dropdown"
+msgstr ""
+
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:22
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:38
+msgid "Add user"
+msgstr ""
+
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:127
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:108
+msgid "Repeat password"
+msgstr ""
+
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:146
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:127
+msgid "Admin"
+msgstr ""
+
+#: cache/72/726c85bb5318f70333c3904bd2ec488e8409a6cee815769877d4fdccea55c400.php:178
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:159
+msgid "Select collections"
+msgstr ""
+
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:22
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:31
+msgid "Add order"
+msgstr ""
+
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:72
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:75
+msgid "Opened"
+msgstr ""
+
+#: cache/7b/7b5ad6d203e0b5d963ee64bdf48ad316a920973bfc4956f4d06e9846f9f8081e.php:88
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:91
+msgid "Canceled"
+msgstr ""
+
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:100
+msgid "Created date"
+msgstr ""
+
+#: cache/88/88a346f69a23acda9e324b2085fbcee8f324d198003d55d9eec7e5f7e8119d16.php:118
+msgid "Ordered date"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:22
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:31
+msgid "Add element"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:39
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:45
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:43
+msgid "Category"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:98
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:41
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:102
+msgid "Quantity"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:116
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:53
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:120
+msgid "Comment"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:138
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:142
+msgid "Category options"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:241
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:243
+msgid "Products with this element"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:256
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:324
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:31
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:31
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:258
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:326
+msgid "Product"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:263
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:331
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:265
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:333
+msgid "Choose product"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:291
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:355
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:131
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:195
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:176
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:242
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:293
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:357
+msgid "Count"
+msgstr ""
+
+#: cache/8e/8e46048c0b39853f7c82d669f58ac0cb7e3d44212cf456566d5eecafedeb7c86.php:308
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:310
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:134
+msgid "Add new product"
+msgstr ""
+
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:22
+msgid "Add product"
+msgstr ""
+
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:79
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:124
+msgid "Elements in product"
+msgstr ""
+
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:101
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:171
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:146
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:216
+msgid "Choose element"
+msgstr ""
+
+#: cache/8f/8fbf7e4e904931a4a381e85fccf993a37011b7e95f1883ad2820dbd9890364e4.php:148
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:193
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:198
+msgid "Add new element"
+msgstr ""
+
+#: cache/96/96700f312634605d0edce65551453369b51768e5a024063179f10bb5d70647a1.php:22
+#: cache/96/96700f312634605d0edce65551453369b51768e5a024063179f10bb5d70647a1.php:29
+msgid "Add category"
+msgstr ""
+
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:22
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:98
+msgid "Edit product"
+msgstr ""
+
+#: cache/a8/a80af4641bcba905ffa8482d87d5a564b85a2167ebdf2720a560e13266d8a3ca.php:75
+msgid "Number of products which can be made using saved elements on the right."
+msgstr ""
+
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:22
+msgid "Category properties"
+msgstr ""
+
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:104
+msgid "Delete this property and all its dependants"
+msgstr ""
+
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:106
+msgid "Are you sure you want delete property? "
+msgstr ""
+
+#: cache/af/afed8643af97a6cc6a56c4e904a44d339dcd499ab9806742e4b55afc234e4ad2.php:132
+msgid "Add new property"
+msgstr ""
+
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:162
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:22
+#: cache/bb/bbd7d6e7884f2dffebfea9cd5cd1678da68d5fd2291878578f10990de65651a4.php:35
+msgid "Edit element"
+msgstr ""
+
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:170
+msgid "Delete element and all dependencies "
+msgstr ""
+
+#: cache/ba/bae55f037b18fca4190677df330ad39cd79cc2980fe513998039683685d1191f.php:172
+msgid "Are you sure you want delete element?"
+msgstr ""
+
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:30
+msgid "Edit profile"
+msgstr ""
+
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:215
+msgid "Token"
+msgstr ""
+
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:219
+msgid "Created at"
+msgstr ""
+
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:223
+msgid "Valid to"
+msgstr ""
+
+#: cache/c8/c86ddf6b6ebc697624e2671e7728e33dcf173170297a442524b80fcde9ae08c9.php:227
+msgid "IP"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:38
+msgid "Create new account"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:47
+msgid "First name"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:59
+msgid "Enter first name"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:67
+msgid "Last name"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:79
+msgid "Enter last name"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:125
+msgid "Confirm password"
+msgstr ""
+
+#: cache/c9/c974be8705db02437b14049d09d83514cb7e124c3fb8cf00305ae19530f79856.php:135
+msgid "Enter password again"
+msgstr ""
+
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:106
+msgid "Delete product and all dependencies"
+msgstr ""
+
+#: cache/de/deedd0636cd9d04843f58fdc5cc4fe55f453376c76cea4f4db6e03ff8c75c2e9.php:108
+msgid "Are you sure you want delete product?"
+msgstr ""
+
+#: config.php:66
+msgid "Monday"
+msgstr ""
+
+#: config.php:66
+msgid "Tuesday"
+msgstr ""
+
+#: config.php:66
+msgid "Wednesday"
+msgstr ""
+
+#: config.php:66
+msgid "Thursday"
+msgstr ""
+
+#: config.php:66
+msgid "Friday"
+msgstr ""
+
+#: config.php:66
+msgid "Saturday"
+msgstr ""
+
+#: config.php:66
+msgid "Sunday"
+msgstr ""
+
+#~ msgid "ABI_INDEX_RIGHT"
+#~ msgstr "Right"
+
+#~ msgid "ABI_INDEX_LEFT"
+#~ msgstr "Left"
+
+#~ msgid "ABI_INDEX_RIGHT_%.2f"
+#~ msgstr "Right %.2f"
+
+#~ msgid "ABI_INDEX_LEFT_%.2f"
+#~ msgstr "Left %.2f"
+
+#~ msgid "Month_January"
+#~ msgstr "January"
+
+#~ msgid "Month_February"
+#~ msgstr "February"
+
+#~ msgid "Month_March"
+#~ msgstr "March"
+
+#~ msgid "Month_April"
+#~ msgstr "April"
+
+#~ msgid "Month_May"
+#~ msgstr "May"
+
+#~ msgid "Month_June"
+#~ msgstr "June"
+
+#~ msgid "Month_July"
+#~ msgstr "July"
+
+#~ msgid "Month_August"
+#~ msgstr "August"
+
+#~ msgid "Month_September"
+#~ msgstr "September"
+
+#~ msgid "Month_October"
+#~ msgstr "October"
+
+#~ msgid "Month_November"
+#~ msgstr "November"
+
+#~ msgid "Month_December"
+#~ msgstr "December"
+
+#~ msgid "There are no BP comments"
+#~ msgstr "Ni najdenih BP komentarjev."

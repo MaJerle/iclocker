@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('tags')|raw }} {{ __('Element properties') }}
+            </div>
+        </div>
+        <div class="modal-body">
+            {{ flash('all')|raw }}
+			<form 
+                id="element_properties"
+                method="POST"
+                class="ajax form-horizontal"
+                action="{{ url('elements_properties') }}"
+                data-changebrowserlink="no"
+                data-ajax-target="modal_main_content"
+                data-ajax-success="elements_properties_updated"
+            >
+            {% include 'elements_properties_form.html' %}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="pull-left">
+                <a class="ajax" href="{{ url('elements_properties') }}" data-changebrowserlink="no" data-ajax-target="modal_main_content">
+                    <button class="btn btn-primary">{{ fa('refresh')|raw }} {{ __('Refresh') }}</button>
+                </a>
+            </div>
+            <button type="submit" class="btn btn-success" data-submit-form="element_properties" id="element_properties_apply">{{ __('Apply changes') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    jQuery('body').on('change keydown keyup', '.element_property_control', function() {
+        var btn = jQuery('#element_properties_apply');
+        var saved = btn.data('saved') || false;
+
+        if (!saved) {
+            btn.data('saved', true);
+
+            var cnt = btn.html();
+            btn.html('* ' + cnt);
+        }
+    });
+
+    //On ajax success, trigger event
+    function elements_properties_updated() {
+        jQuery('body').trigger({
+            type:"element_properties_updated",
+            element_id: '{{ route_params.element_id }}'
+        });
+    }
+
+</script>

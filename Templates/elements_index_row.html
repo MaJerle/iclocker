@@ -1,0 +1,82 @@
+	<td>{{ loop.index }}</td>
+
+
+{% if is_admin() %}
+	<td>{{ element.Element.id }}</td>
+{% endif %}
+
+
+	<td><div class="element_name inline_edit" data-what="name" data-url-func="elements_GetUpdateUrl" data-id="{{ element.Element.id }}">{{ element.Element.name }}</div></td>
+
+
+	<td class="table_td_nr{% if element.Element.quantity < element.Element.warning_quantity %} bold{% endif %}">
+		<div style="display: flex;">
+			<div class="pull-left">	
+				<a class="element_quantity_set" id="element_quantity_set_{{ element.Element.id }}" href="{{ url('elements_quantity', {'element_id': element.Element.id, 'quantity': -1}) }}" data-element="{{ element.Element.id }}">{{ fa('chevron-down') }}</a>
+			</div>
+			<div class="pull-left" style="flex: 1;">
+				<div class="element_quantity inline_edit" data-what="quantity" data-url-func="elements_GetUpdateUrl" data-id="{{ element.Element.id }}" id="element_quantity_{{ element.Element.id }}">{{ element.Element.quantity }}</div>
+			</div>
+		</div>
+	</td>
+
+
+	{% if product %}
+		<td>{{ element.ElementProduct.element_count }}</td>
+	{% endif %}
+
+
+{% if get_user_setting('show_element_warningquantity') %}
+	<td><div class="inline_edit" data-url-func="elements_GetUpdateUrl" data-inputtype="number" data-what="warning_quantity" data-id="{{ element.Element.id }}">{{ element.Element.warning_quantity }}</div></td>
+{% endif %}
+
+
+{% if get_user_setting('show_element_category') %}
+	<td><div class="inline_edit" data-what="category_id" data-url-func="elements_GetUpdateUrl" data-inputtype="select" data-options-func="elements_GetOptions" data-id="{{ element.Element.id }}" data-options-selected="{{ element.Element.category_id }}">{{ element.Category.name }}</div></td>
+{% endif %}
+
+
+{% if get_user_setting('show_element_description') %}
+	<td><div class="inline_edit" data-url-func="elements_GetUpdateUrl" data-inputtype="textarea" data-what="description" data-id="{{ element.Element.id }}">{{ element.Element.description }}</div></td>
+{% endif %}
+
+<!--
+{% if get_user_setting('show_element_properties') %}
+	<td>
+	{% for p in element.Property %}
+		{% if p.ElementProperty.property_value|length > 0 %}
+		<div class="row">
+		{% if property_is_fileupload(p) %}
+			<div class="col-md-12">
+				{{ property_show_element_value(p)|raw }}
+			</div>
+		{% else %}
+			<div class="col-xs-4">
+				{{ p.name }}
+			</div>
+			<div class="col-xs-8">
+				{{ property_show_element_value(p)|raw }}
+			</div>
+		{% endif %}
+		</div>
+		{% endif %}
+	{% endfor %}
+	</td>
+{% endif %}
+-->
+
+{% if is_admin() or get_user_setting('show_element_created') %}
+	<td>{{ get_user_fullname(element.CreatedBy) }}, {{ get_eventdatetime(element.Element.created_at) }}</td>
+{% endif %}
+
+
+{% if not is_modal %}
+	<td class="icons">
+		<a href="{{ url('comments_view', {type: get_comments_type('element'), foreign_id: element.Element.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('View comments') }}">{{ fa('comments') }}</a>
+		<a href="{{ url('elements_properties', {'element_id': element.Element.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('Manage element properties') }}">{{ fa('tags') }}</a>
+		<a href="{{ url('elements_duplicate', {'element_id': element.Element.id}) }}" title="{{ __('Duplicate element') }}" data-confirm="{{ __('Are you sure you wanna duplicate this element?') }}">{{ fa('copy') }}</a>
+		<a href="{{ url('elements_order', {'element_id': element.Element.id}) }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no" title="{{ __('Add element to open order') }}">{{ fa('plus') }}</a>
+		<a href="{{ url('elements_edit', {'element_id': element.Element.id}) }}" title="{{ __('Edit element') }}" class="ajax">{{ fa('pencil') }}</a>
+		<a href="{{ url('elements_delete', {'element_id': element.Element.id}) }}" title="{{ __('Delete element and all dependencies')}}" data-confirm="{{ __('Are you sure you wanna delete element %s?')|format(element.Element.name) }}" class="delete">{{ fa('trash')|raw }}</a>
+	</td>
+{% endif %}

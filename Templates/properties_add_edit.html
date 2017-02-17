@@ -1,0 +1,125 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<form method="POST" class="form ajax form-horizontal">
+		<div class="page-title">
+			<div class="title_left">
+				{% if action == 'edit' %}{{ __('Edit property') }}{% else %}{{ __('Add property') }}{% endif %}
+			</div>
+			<div class="title_right">
+				{{ form_buttons(action)|raw }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('tags')|raw }} {{ __('Property') }} <small>{{ record.Property.name }}</small></h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label for="propertyName" class="col-md-3 control-label">
+								{{ __('Name *') }}
+								{{ form_error('name')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="propertyName" type="text" name="name" value="{{ values.name }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="propertyUnits" class="col-md-3 control-label">
+								{{ __('Unit *') }}
+								{{ form_error('unit')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="propertyUnits" type="text" name="unit" value="{{ values.unit }}" />
+								<div class="help-block">
+									{{ __('Set unit for your property. For example, if your property name is "Datasheet", unit would be "URL to PDF" or if you have property name "Resistance", unit could be "Ohm".') }}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="propertyDescription" class="col-md-3 control-label">
+								{{ __('Description') }}
+								{{ form_error('description')|raw }}
+							</label>
+							<div class="col-md-9">
+								<textarea class="form-control" id="propertyDescription" name="description">{{ values.description }}</textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="propertyDataType" class="col-md-3 control-label">
+								{{ __('Data type') }}
+								{{ form_error('data_type')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select class="form-control" name="data_type" id="propertyDataType">
+									<option value="1"{% if values.data_type == '1' %} selected="selected"{% endif %}>{{ __('String') }}</option>
+									<option value="2"{% if values.data_type == '2' %} selected="selected"{% endif %}>{{ __('Number') }}</option>
+									<option value="3"{% if values.data_type == '3' %} selected="selected"{% endif %}>{{ __('File upload') }}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="propertyCategories" class="col-md-3 control-label">
+								{{ __('Categories') }}
+								{{ form_error('category')|raw }}
+							</label>
+							<div class="col-md-9">
+							{% if categories|length > 0 %}
+								<select class="form-control" name="category[]" id="propertyCategories" multiple="multiple" size="10">
+								{% for cat in categories %}
+									<option value="{{ cat.Category.id }}"{% if cat.Category.id in values.category %} selected="selected"{% endif %}>{{ cat.Category.name }}</option>
+								{% endfor %}
+								</select>
+								<div class="help-block">
+									<button class="btn btn-primary select-all" data-select="propertyCategories">{{ __('Select all categories') }}</button>
+									<button class="btn btn-primary select-none" data-select="propertyCategories">{{ __('Select none categories') }}</button>
+								</div>
+							{% else %}
+								{{ __('There are no categories to be linked to this property. You must add categories first.') }}
+							{% endif %}
+							</div>
+						</div>
+					{% if action == 'edit' %}
+						<div class="form-group">
+							<label class="col-md-3 control-label">
+								{{ __('Choices') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">
+									<a href="{{ url('properties_choices') }}" data-modal="modal_main" data-ajax-target="modal_main" class="ajax" data-changebrowserlink="no">{{ __('Manage choices') }}</a>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">
+								{{ __('Created') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.CreatedBy, record.Property.created_at) }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">
+								{{ __('Modified') }}
+							</label>
+							<div class="col-md-9">
+								<p class="form-control-static">{{ get_event_user_datetime(record.ModifiedBy, record.Property.modified_at) }}</p>
+							</div>
+						</div>
+					{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				{% include 'comments.html' %}
+			</div>
+		</div>
+	</form>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

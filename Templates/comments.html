@@ -1,0 +1,188 @@
+{% if in_modal_comments %}
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('comments') }} {{ __('Comments') }}
+            </div>
+        </div>
+        <div class="modal-body">
+{% endif %}
+{% if not in_modal_comments %}
+			<div class="x_panel">
+				<div class="x_title">
+					<h2>{{ fa('comments-o')|raw }} {{ __('Comments') }}</h2>
+				{% if action == 'edit' %}
+					<ul class="nav navbar-right panel_toolbox">
+						<li id="button_comment_add"><a href="">{{ fa('plus')|raw }} {{ __('Add new') }}</a></li>
+					</ul>
+				{% endif %}
+				</div>
+				<div class="x_content">
+{% endif %}
+					<div class="comments comments-base">
+					{% for comment in comments %}
+						<div class="comment" data-comment="{{ comment.Comment.id }}" data-comment-parent="{{ comment.Comment.parent_id }}">
+							<div class="comment-title">
+								{{ get_user_fullname(comment.CreatedBy)|raw }}
+								<small>{{ get_eventdatetime(comment.Comment.created_at) }}</small>
+							</div>
+							<div class="comment-body">
+								{{ comment.Comment.comment }}
+							</div>
+							<div class="comments comments-children">
+							{% for c in comment.children %}
+								<div class="comment" data-comment="{{ c.Comment.id }}" data-comment-parent="{{ c.Comment.parent_id }}">
+									<div class="comment-title">
+										{{ get_user_fullname(c.CreatedBy)|raw }}
+										<small>{{ get_eventdatetime(c.Comment.created_at) }}</small>
+									</div>
+									<div class="comment-body">
+										{{ c.Comment.comment }}
+									</div>
+								</div>
+							{% endfor %}
+							</div>
+						</div>
+					{% endfor %}
+					</div>
+					<div class="" id="comment-add"{% if action != 'add' and not in_modal_comments %} style="display: none;"{% endif %}>
+						<div class="comment-body">
+							<div class="form-group">	
+								<textarea class="form-control" name="comment" id="comment_value" placeholder="{{ __('Enter comment') }}">{{ values.comment }}</textarea>
+							</div>
+						{% if action == 'edit' and not in_modal_comments %}
+							<button class="btn btn-success btn-sm" id="button_comment_submit" type="button">{{ fa('plus')|raw }} {{ __('Add comment') }}</button>
+							<div class="pull-right">
+								<button class="btn btn-danger btn-sm" id="button_comment_cancel" type="button">{{ __('Cancel') }}</button>
+							</div>
+						{% endif %}
+						</div>
+					</div>
+{% if not in_modal_comments %}
+				</div>
+			</div>
+{% endif %}
+			<div id="comment_template" style="display: none;"> 
+				<div class="comment" data-comment="__id__" data-comment-parent="__parent__">
+					<div class="comment-title">
+						{{ get_user_fullname(CurrentUser.User)|raw }}
+						<small><span class="event_datetime" data-datetime="__date__">{{ __('Just now') }}</span></small>
+					</div>
+					<div class="comment-body">
+						__content__
+					</div>
+				</div>
+			</div>
+			{% if action != 'add' or in_modal_comments %}
+			<script type="text/javascript">
+				
+				jQuery(document).ready(function() {
+					jQuery('body').on('click', '#button_comment_add', function(e) {
+						e.preventDefault();
+
+						//Show element
+						jQuery('#comment-add').fadeIn();
+
+						return false;
+					});
+					jQuery('body').on('click', '#button_comment_cancel', function(e) {
+						e.preventDefault();
+
+						//Show element
+						jQuery('#comment-add').fadeOut();
+
+						return false;
+					});
+
+					//When click is done on element
+					jQuery('body').on('click', function() {
+						jQuery('.comments-base').each(function(i, el) {
+							var el = jQuery(this);
+							var html = el.html().trim();
+							if (html == '') {
+							//	el.html('{{ __("No comments.") }}');
+							}
+						});
+					});
+
+					jQuery('#button_comment_submit').click(function(e) {
+						e.preventDefault();
+
+						//Get values
+						var el = jQuery(this);
+						var textarea = jQuery('#comment_value');
+						var val = textarea.val();
+						val = val.trim();
+
+						//Disable input
+						el.attr('disabled', true);
+
+						//Check valid data
+						if (val.length == 0) {
+							textarea.parent().addClass('has-error')
+							return false;
+						} else {
+							textarea.parent().removeClass('has-error');
+						}
+
+						//Make ajax request
+						var fakeElement = jQuery('<a></a>')
+							.attr('href', '{{ url("comments_add") }}')
+							.data('ajax-method', 'POST')
+							.data('text-success', '{{ __("Comment has been successfully added.") }}')
+							.data('text-error', '{{ __("Problems trying to insert comment!") }}')
+							.data('ajax-success', 'comment_add_success')
+							.data('ajax-error', 'comment_add_error');
+
+						//Create data array
+						var data = {
+							'model': {{ comments_model }},
+							'foreign_id': {{ comments_foreign_id }},
+							'comment': val
+						};
+
+						//Make request
+						DoAjaxInline(fakeElement, e, data);
+
+						return false;
+					});
+				});
+
+				function comment_add_success(el, data, jqXHR) {
+					//Clear textarea
+					jQuery('#comment_value').html('');
+
+					//Close comment object
+					jQuery('#comment-add').fadeOut();
+
+					var html = jQuery('#comment_template').html();
+					html = html
+						.replace('__date__', data.Comment.Comment.created_at)
+						.replace('__content__', data.Comment.Comment.comment)
+						.replace('__id__', data.Comment.Comment.id)
+						.replace('__parent__', data.Comment.Comment.parent_id);
+
+					//Add to html
+					jQuery('.comments-base').append(html);
+					jQuery('#comment_value').attr('disabled', false);
+					jQuery('#button_comment_submit').attr('disabled', false);
+				}
+
+				function comment_add_error() {
+					jQuery('#comment_value').attr('disabled', false);
+					jQuery('#button_comment_submit').attr('disabled', false);
+				}
+
+			</script>
+			{% endif %}
+{% if in_modal_comments %}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="button_comment_submit">{{ __('Add comment') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal" id="comments_close_button">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+{% endif %}

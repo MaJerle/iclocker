@@ -1,0 +1,101 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<form method="POST" class="form ajax form-horizontal">
+		<div class="page-title">
+			<div class="title_left">
+				{% if action == 'edit' %}{{ __('Edit order') }}{% else %}{{ __('Add order') }}{% endif %}
+			</div>
+			<div class="title_right">
+				{{ form_buttons(action)|raw }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('shopping-basket')|raw }} {{ __('Order') }} <small>{{ record.Elementorder.name }}</small></h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<label for="orderName" class="col-md-3 control-label">
+								{{ __('Name *') }}
+								{{ form_error('name')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control" id="orderName" type="text" name="name" value="{{ values.name }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="orderStatus" class="col-md-3 control-label">
+								{{ __('Status *') }}
+								{{ form_error('status')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select class="form-control" name="status" id="orderStatus">
+									<option value="1"{% if values.status == '1' %} selected="selected"{% endif %}>{{ __('Opened') }}</option>
+									<option value="2"{% if values.status == '2' %} selected="selected"{% endif %}>{{ __('Ordered') }}</option>
+									<option value="0"{% if values.status == '0' %} selected="selected"{% endif %}>{{ __('Canceled') }}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="orderProperty" class="col-md-3 control-label">
+								{{ __('Property') }}
+								{{ form_error('property')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select class="form-control" name="property[]" id="orderProperty">
+									<option value="">{{ __('Choose property') }}</option>
+								{% for property in properties %}
+									<option value="{{ property.Property.id }}"{% if property.Property.id in values.property %} selected="selected"{% endif %}>{{ property.Property.name }}</option>
+								{% endfor %}
+								</select>
+								<p class="help-block">{{ __('Property used for searching elements when adding new element to this order.') }} {{ __('Please note, if you later change property used for order, elements already on order won\'t be updated.') }}</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="orderDateCreated" class="col-md-3 control-label">
+								{{ __('Created date') }}
+								{{ form_error('datecreated')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control daterangepickersingleinput" id="orderDateCreated" type="text" name="datecreated" value="{{ values.datecreated }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="orderDateOrdered" class="col-md-3 control-label">
+								{{ __('Ordered date') }}
+								{{ form_error('dateordered')|raw }}
+							</label>
+							<div class="col-md-9">
+								<input class="form-control daterangepickersingleinput" id="orderDateOrdered" type="text" name="dateordered" value="{{ values.dateordered }}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="orderQuantityType" class="col-md-3 control-label">
+								{{ __('Quantity type') }}
+								{{ form_error('quantity_type')|raw }}
+							</label>
+							<div class="col-md-9">
+								<select name="quantity_type" id="orderQuantityType" class="form-control">
+									<option value="0"{% if values.quantity_type == '0' %} selected="selected"{% endif %}>{{ __('Minimal quantity') }}</option>
+									<option value="1"{% if values.quantity_type != '0' %} selected="selected"{% endif %}>{{ __('Desired quantity') }}</option>
+								</select>
+								<div class="help-block">{{ __('Selected option will be later used when syncing elements received from order with database.') }}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				{% include 'comments.html' %}
+			</div>
+		</div>
+	</form>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

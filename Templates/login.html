@@ -1,0 +1,54 @@
+{% if not is_ajax %}
+{% include 'front_header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+<div class="front-title">
+	{{ __('Log in to application') }}
+</div>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		{{ flash('all')|raw }}
+		<form method="POST" class="form-horizontal ajax">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="inputEmail">
+					{{ __('E-mail address') }}
+				</label>
+				<div class="col-sm-9">
+					<input type="email" class="form-control" id="inputEmail" name="username" placeholder="{{ __('Enter e-mail address') }}" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="inputPassword">
+					{{ __('Password') }}
+				</label>
+				<div class="col-sm-9">
+					<input type="password" class="form-control" id="inputPassword" name="password" placeholder="{{ __('Enter password') }}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<div class="checkbox">
+						<label>
+							<input type="hidden" name="remember" value="0" />
+							<input type="checkbox" name="remember" value="1" checked="checked" /> {{ __('Remember me') }}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button type="submit" class="btn btn-default">{{ __('Login') }}</button>
+				</div>
+			</div>		
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<a href="{{ url('register') }}" class="ajax">{{ __('Create account') }}</a> | <a href="{{ url('forgot_password') }}" class="ajax">{{ __('Restore my lost password') }}</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% if not is_ajax %}
+</div>
+{% include 'front_footer.html' %}
+{% endif %}

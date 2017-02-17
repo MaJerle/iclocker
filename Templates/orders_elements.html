@@ -1,0 +1,242 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+	{{ flash('all')|raw }}
+	<!-- Select other order -->
+	<div class="orders_elements_select">
+		<form method="get" class="ajax">
+			<select class="form-control" name="order" id="select_order">
+			{% for o in orders %}
+				<option value="{{ o.Elementorder.id }}"{% if o.Elementorder.id == order.Elementorder.id %} selected="selected"{% endif %}>{{ o.Elementorder.name }}</option>
+			{% endfor %}
+			</select>
+		</form>
+	</div>
+
+	<form class="table-form form-inline" method="POST">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>{{ fa('product-hunt')|raw }} {{ __('Order elements') }} <small>{{ order.Elementorder.name }}</small></h2>
+				<ul class="nav navbar-right panel_toolbox">
+				{% if order.Elementorder.status == '1' %}
+					<li><a href="{{ url('orders_elements_add', {elementorder_id: order.Elementorder.id}) }}" class="ajax">{{ fa('plus')|raw }} {{ __('Add new element') }}</a></li>
+				{% endif %}
+				</ul>
+			</div>
+			<div class="x_content">
+				<div class="table-responsive">
+					<table class="table table-striped responsive-utilities jambo_table">
+						<thead>
+							<tr>
+								<th class="table_td_nr"><input type="checkbox" name="" value="" class="check-all" /></th>
+								<th class="table_td_nr">{{ __('#') }}</th>
+							{% if is_admin() %}
+								<th class="table_td_nr">{{ __('ID') }}</th>
+							{% endif %}
+								<th>{{ __('Order number') }}</th>
+								<th>{{ __('Min quantity') }}</th>
+								<th>{{ __('Desired quantity') }}</th>
+								<th>{{ __('Purpose') }}</th>
+								<th>{{ __('Description') }}</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for element in order.Orderelement %}
+						{% if order.Elementorder.status != '0' %}
+							<tr class="{% if element.ordered == '1' %}success{% else %}danger{% endif %}">
+						{% else %}
+							<tr class="danger">
+						{% endif %}
+								<td><input type="checkbox" name="orderelement[]" value="{{ element.id }}" class="for-check-all" /></td>
+								<td>{{ loop.index }}</td>
+							{% if is_admin() %}
+								<td>{{ element.id }}</td>
+							{% endif %}
+								<td class="inline_edit" data-what="number" data-url-func="orderelements_GetUpdateUrl" data-id="{{ element.id }}" id="ordernumber_{{ element.id }}">{{ element.number }}</td>
+								<td class="inline_edit" data-what="minquantity" data-url-func="orderelements_GetUpdateUrl" data-id="{{ element.id }}" id="min_quantity_{{ element.id }}">{{ element.minquantity }}</td>
+								<td class="inline_edit" data-what="desiredquantity" data-url-func="orderelements_GetUpdateUrl" data-id="{{ element.id }}" id="desired_quantity_{{ element.id }}">{{ element.desiredquantity }}</td>
+								<td class="inline_edit" data-what="purpose" data-url-func="orderelements_GetUpdateUrl" data-id="{{ element.id }}" id="purpose_{{ element.id }}">{{ element.purpose }}</td>
+								<td class="inline_edit" data-what="description" data-inputtype="textarea" data-url-func="orderelements_GetUpdateUrl" data-id="{{ element.id }}" id="description_{{ element.id }}">{{ element.description }}</td>
+								<td class="icons">
+									<!--<a href="{{ url('orders_elements_edit', {'elementorder_id': order.Elementorder.elementorder_id, 'orderelement_id': element.id}) }}" title="{{ __('Edit order element')}}">{{ fa('pencil')|raw }}</a>-->
+								{% if order.Elementorder.status == '1' %}
+									<a href="{{ url('orders_elements_delete', {'elementorder_id': order.Elementorder.id, 'orderelement_id': element.id}) }}" title="{{ __('Delete this element from order')}}" data-confirm="{{ __('Are you sure you wanna delete element %s from order?')|format(element.number) }}" class="delete">{{ fa('trash')|raw }}</a>
+								{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</tr>
+
+				<!-- With selected -->
+				<div class="form-group">
+					<label for="">{{ __('With selected') }}</label>
+					<select name="option" class="form-control" id="with-selected">
+						<option value="">{{ __('Select action') }}</option>
+						<option value="order">{{ __('Set as ordered') }}</option>
+						<option value="cancel">{{ __('Set as canceled') }}</option>
+						<option value="order_cancel">{{ __('Set selected as ordered and others as canceled') }}</option>
+					</select>
+					<button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>{{ fa('download')|raw }} {{ __('Export order') }}</h2>
+		</div>
+		<div class="x_content">
+			<form class="form-horizontal">
+				<div class="row">
+					<div class="form-group">
+						<label class="col-lg-2 control-label">{{ __('Export type') }}</label>
+						<div class="col-lg-10">
+							<select name="" id="export_type">
+								<option value="farnell" data-template="__number__,__quantity__,__purpose__">{{ __('Farnell') }}</option>
+								<option value="mouser" data-template="__number__|__quantity__">{{ __('Mouser') }}</option>
+								<option value="custom">{{ __('Custom') }}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" id="custom_export_type_div" style="display: none;">
+						<label class="col-lg-2 control-label">{{ __('Custom export template') }}</label>
+						<div class="col-lg-10">
+							<input id="custom_template" type="text" class="form-control" />
+							<p class="help-box">
+								{{ __('Format custom template output. Use these possible constants in text editor for elements.') }}
+								<div>
+									<span class="label label-default">__number__</span> {{ __('Order number will replace this constant when exporting.') }}
+								</div>
+								<div>
+									<span class="label label-default">__quantity__</span> {{ __('Quantity will replace this constant when exporting.') }}
+								</div>
+								<div>
+									<span class="label label-default">__purpose__</span> {{ __('Purpose string will replace this constant when exporting.') }}
+								</div>
+								<div>
+									<span class="label label-default">__description__</span> {{ __('Description string will replace this constant when exporting.') }}
+								</div>
+							</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<button type="button" id="button_export" class="btn btn-primary">{{ __('Export order') }}</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">{{ __('Output') }}</label>
+						<div class="col-lg-10">
+							<textarea id="export-content" class="form-control" style="min-height: 150px;" readonly="readonly"></textarea>
+						{% if order.Elementorder.quantity_type == '0' %}
+							<span class="tip">{{ __('Minimal quantity will be used for quantity.') }}</span>
+						{% else %}
+							<span class="tip">{{ __('Desired quantity will be used for quantity.') }}</span>
+						{% endif %}
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		
+		jQuery(document).ready(function() {
+			jQuery('#select_order').change(function() {
+				if (jQuery(this).val() != '') {
+					//Format url
+					var url = '{{ url("order_elements_list", {}, false) }}'.replace(':elementorder_id', jQuery(this).val());
+
+					//Redirect
+					window.location.href = url;
+				}
+			});
+
+			//Format export code
+			jQuery('#button_export').click(function() {
+				//Get all checked checkboxes for elements
+				ids = [];
+				jQuery('.for-check-all:checked').each(function() {
+					ids.push(jQuery(this).val());
+				});
+
+				//Get export type
+				var export_type = jQuery('#export_type').val();
+
+				//Get template
+				var template = '';
+
+				//Check export type
+				if (export_type == 'custom') {
+					template = jQuery('#custom_template').val();
+				} else {
+					template = jQuery('#export_type option:selected').data('template') || '';
+				}
+
+				//Get output values
+				output = '';
+				for (i = 0; i < ids.length; i++) {
+					var number = jQuery('#ordernumber_' + ids[i]).html();
+				{% if order.Elementorder.elementorder_quantity_type == '0' %}
+					var quantity = 'min';
+				{% else %}
+					var quantity = 'desired';
+				{% endif %}
+					var quant = jQuery('#' + quantity + '_quantity_' + ids[i]).html();
+					var purpose = jQuery('#purpose_' + ids[i]).html();
+					var description = jQuery('#description_' + ids[i]).html();
+
+					//Create output
+					var out = template + "\n";
+					out = out
+						.replace(/__number__/g, number)
+						.replace(/__quantity__/g, quant)
+						.replace(/__purpose__/g, purpose)
+						.replace(/__description__/g, description);
+
+					output += out;
+				}
+
+				//Write to textarea
+				if (output == '') {
+					jQuery('#export-content').html('{{ __("Please select elements for export!") }}');
+				} else {
+					jQuery('#export-content').html(output);
+				}
+			});
+
+			jQuery('#export_type').change(function() {
+				var val = jQuery(this).val();
+				if (val == 'custom') {
+					jQuery('#custom_export_type_div').show();
+				} else {
+					jQuery('#custom_export_type_div').hide();
+				}
+			});
+
+			jQuery('.check-all').click(function() {
+				obj = jQuery(this);
+				if (obj.attr('name') != '') {
+					return;
+				}
+
+				jQuery('table tbody input[type=checkbox]').prop('checked', obj.prop('checked'));
+			});
+		});
+
+		//Return url for updates
+		function orderelements_GetUpdateUrl(obj) {
+			var id = obj.data('id');
+			return '{{ url("orders_elements_update", {}, false) }}'.replace(':elementorder_id', '{{ order.Elementorder.id }}').replace(':orderelement_id', id);;
+		}
+
+	</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

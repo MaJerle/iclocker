@@ -1,0 +1,271 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+{% if in_modal %}
+<div class="modal-dialog modal-lg" id="modal_main_content">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-title">
+                {{ fa('database')|raw }} {% if action == 'edit' %}{{ __('Edit element') }}{% else %}{{ __('Add element') }}{% endif %}
+            </div>
+        </div>
+        <div class="modal-body">
+{% endif %}
+			{{ flash('all')|raw }}
+			<form
+				method="POST"
+				class="form ajax form-horizontal" 
+				id="elements_add_form"
+			{% if action == 'add' %} 
+				action="{{ url('elements_add', {category_id: values.category_id}) }}{% if in_modal %}?modal=1{% endif %}"
+			{% else %}
+				action="{{ url('elements_edit', {element_id: record.Element.id}) }}{% if in_modal %}?modal=1{% endif %}"
+			{% endif %}
+			{% if in_modal %}
+				data-ajax-target="modal_main_content"
+				data-changebrowserlink="no"
+			{% endif %}
+			>
+			{% if not in_modal %}
+				<div class="page-title">
+					<div class="title_left">
+						{% if action == 'edit' %}{{ __('Edit element') }}{% else %}{{ __('Add element') }}{% endif %}
+					</div>
+					<div class="title_right">
+						{{ form_buttons(action)|raw }}
+					</div>
+				</div>
+			{% endif %}
+				<div class="row">
+					<div class="{% if in_modal %}col-lg-12{% else %}col-lg-8{% endif %}">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>{{ fa('database')|raw }} {{ __('Element') }} <small>{{ record.Element.name }}</small></h2>
+							{% if in_modal %}
+								<ul class="nav navbar-right panel_toolbox" data-original-title="" title="">
+								{% if action == 'add' %}
+									<li><a href="{{ url('elements_add', {category_id: values.category_id}) }}">{{ __('Open fullscreen') }}</a></li>
+								{% else %}
+									<li><a href="{{ url('elements_edit', {element_id: record.Element.id}) }}">{{ __('Open fullscreen') }}</a></li>
+								{% endif %}
+								</ul>
+							{% endif %}
+							</div>
+							<div class="x_content">
+								<div class="form-group">
+									<label for="elementCategory" class="col-md-4 control-label">
+										{{ __('Category *') }}
+										{{ form_error('category_id')|raw }}
+									</label>
+									<div class="col-md-8">
+										<select class="form-control" name="category_id" id="elementCategory">
+										{% for category in categories %}
+											<option value="{{ category.Category.id }}"{% if category.Category.id == values.category_id %} selected="selected"{% endif %}>{{ category.Category.name }}</option>
+										{% endfor %}
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="elementName" class="col-md-4 control-label">
+										{{ __('Name *') }}
+										{{ form_error('name')|raw }}
+									</label>
+									<div class="col-md-8">
+										<input class="form-control" id="elementName" type="text" name="name" value="{{ values.name }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="elementQuantity" class="col-md-4 control-label">
+										{{ __('Quantity *') }}
+										{{ form_error('quantity')|raw }}
+									</label>
+									<div class="col-md-8">
+										<input class="form-control" id="elementQuantity" type="number" name="quantity" value="{{ values.quantity }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="elementWarningQuantity" class="col-md-4 control-label">
+										{{ __('Warning quantity') }}
+										{{ form_error('warning_quantity')|raw }}
+									</label>
+									<div class="col-md-8">
+										<input class="form-control" id="elementWarningQuantity" type="number" name="warning_quantity" value="{{ values.warning_quantity }}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="elementDescription" class="col-md-4 control-label">
+										{{ __('Description') }}
+										{{ form_error('description')|raw }}
+									</label>
+									<div class="col-md-8">
+										<textarea name="description" id="elementDescription" class="form-control">{{ values.description }}</textarea>
+									</div>
+								</div>
+							{% if action == 'edit' %}
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label">
+										{{ __('Created') }}
+									</label>
+									<div class="col-md-8">
+										<p class="form-control-static">{{ get_event_user_datetime(record.CreatedBy, record.Element.created_at) }}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label">
+										{{ __('Modified') }}
+									</label>
+									<div class="col-md-8">
+										<p class="form-control-static">{{ get_event_user_datetime(record.ModifiedBy, record.Element.modified_at) }}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="elementRevisionUpdate" class="col-md-4 control-label">
+										{{ __('Update reason *') }}
+										{{ form_error('revision_reason')|raw }}
+									</label>
+									<div class="col-md-8">
+										<input class="form-control" id="elementRevisionUpdate" type="text" name="revision_reason" value="" />
+									</div>
+								</div>
+							{% endif %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="{% if in_modal %}col-lg-12{% else %}col-lg-12{% endif %}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>{{ fa('cubes')|raw }} {{ __('Category options') }}</h2>
+									</div>
+									<div class="x_content">
+										{% include 'elements_properties_form.html' %}
+									</div>
+								</div>
+							</div>
+							<div class="{% if in_modal %}col-lg-12{% else %}col-lg-12{% endif %}">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>{{ fa('product-hunt')|raw }} {{ __('Products') }}</h2>
+										<ul class="nav navbar-right panel_toolbox">
+										{% if products|length > 0 %}
+											<li id="button_add_element"><a href="">{{ fa('plus')|raw }} {{ __('Add') }}</a></li>
+										{% endif %}
+										</ul>
+									</div>	
+									<div class="x_content">
+									{% if products|length > 0 %}
+										<div id="elements_products_box" class="row">
+										{% for id, count in values.product %}
+											<div class="col-lg-4 col-md-6 col-sm-6 element_product_row">
+												<div class="row">
+													<div class="col-xs-8">
+														<label>{{ __('Product') }} <span class="product_remove_icon">{{ fa('trash')|raw }}</span></label>
+														<select class="form-control" name="product_id[]">
+															<option value="">{{ __('Choose product') }}</option>
+														{% for product in products %}
+															<option value="{{ product.Product.id }}"{% if product.Product.id == id %} selected="selected"{% endif %}>{{ product.Product.name }}</option>
+														{% endfor %}
+														</select>
+													</div>
+													<div class="col-xs-4">
+														<label>{{ __('Count') }}</label>
+														<input class="form-control" type="number" value="{{ count }}" name="product_value[]" min="0" />
+													</div>
+												</div>
+											</div>
+										{% endfor %}
+										</div>
+										<span id="elements_products_box_empty"{% if values.product|length > 0 %} style="display: none;"{% endif %}>{{ __('There is no product assigned to element.') }}</span>
+									{% else %}
+										{{ __('There is no available products to associate with elements. You must first add new product.') }}
+									{% endif %}
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="{% if in_modal %}col-lg-12{% else %}col-lg-4{% endif %}">
+						{% include 'comments.html' %}
+
+					{% if action == 'edit' %}
+						{% include 'changelog.html' %}
+					{% endif %}
+					</div>
+				</div>
+			</form>
+			<div id="elements_add_box" style="display: none">
+				<div class="col-lg-4 col-md-6 col-sm-6 element_product_row">
+					<div class="row">
+						<div class="col-xs-8">
+							<label>{{ __('Product') }} <span class="product_remove_icon">{{ fa('trash')|raw }}</span></label>
+							<select class="form-control" name="product_id[]">
+								<option value="">{{ __('Choose product') }}</option>
+							{% for product in products %}
+								<option value="{{ product.Product.id }}">{{ product.Product.name }}</option>
+							{% endfor %}
+							</select>
+						</div>
+						<div class="col-xs-4">
+							<label>{{ __('Count') }}</label>
+							<input class="form-control" type="number" value="" name="product_value[]" min="0" />
+						</div>
+					</div>
+				</div>
+			</div>
+{% if in_modal %}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" data-submit-form="elements_add_form" id="elements_add_button">{{ __('Save element') }}</button>
+            <button type="button" class="btn button_cancel" data-dismiss="modal" id="elements_close_form">{{ __('Close') }}</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+			<script type="text/javascript">
+
+				jQuery(document).ready(function() {
+					//Click on add new element
+					jQuery('#button_add_element').click(function(e) {
+						//Disable default functionality
+						e.preventDefault();
+
+						//Add new value
+						jQuery('#elements_products_box').append(jQuery('#elements_add_box').html());
+						jQuery('#elements_products_box_empty').hide();
+
+						//Reinit select box
+						InitSelect2();
+					});
+
+					//Click on remove icon
+					jQuery('#elements_products_box').on('click', '.product_remove_icon', function(e) {
+						//Remove element from DOM
+						jQuery(this).parent().parent().parent().parent().remove();
+						if (jQuery('#elements_products_box').children().length == 0) {
+							jQuery('#elements_products_box_empty').show();
+						}
+					});
+
+					//Category id selected
+					jQuery('#elementCategory').change(function() {
+					{% if action == 'add' %}
+						var id = jQuery(this).val();
+						jQuery('#elements_add_form').append(jQuery('<input />').attr('type', 'hidden').attr('name', 'update_category'));
+						jQuery('#elements_add_form')
+							.attr('action', '{{ url("elements_add", {category_id: "__cat_id"}, false) }}{% if in_modal %}?modal=1{% endif %}'.replace('__cat_id', id))
+							.submit();
+					{% endif %}
+					});
+
+					//When element is added on orderelements page, reload form
+					jQuery('body').on('hide.bs.modal', function() {
+						jQuery('#orderelements_button_reload').trigger('click');
+					});
+				});
+
+			</script>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

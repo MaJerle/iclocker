@@ -1,0 +1,172 @@
+{% for property in properties %}
+    {% if property.Property.name %}
+    <div class="form-group">
+        <label for="property_{{ property.Property.id }}" class="col-md-4 control-label">
+        {{ __(property.Property.name) }}
+        {% if property.Property.unit %}
+            [{{ property.Property.unit }}]
+        {% endif %}
+        </label>
+        <div class="col-md-8">
+        {% if property.Property.Propertychoice|length > 0 and not property_is_fileupload(property.Property) %}
+            <select class="form-control element_property_control" name="property[{{ property.Property.id }}]" id="property_{{ property.Property.id }}">
+                <option value="">{{ __('Choose from dropdown') }}</option>
+            {% for opt in property.Property.Propertychoice %}
+                <option value="{{ opt.choice }}"{% if property.Property.id in values.property|keys and attribute(values.property, property.Property.id) == opt.choice %} selected="selected"{% endif %}>{{ opt.choice }}</option>
+            {% endfor %}
+            </select>
+        {% else %}
+            {% if property_is_fileupload(property.Property) %}
+                <input id="property-hidden-{{ property.Property.id }}" type="hidden" name="property[{{ property.Property.id }}]" value="{{ attribute(values.property, property.Property.id) }}" />
+                <div class="upload-file" style="display: flex;">
+                    <span class="btn btn-primary fileinput-button">
+                        {{ fa('plus') }}
+                        <span class="" data-uploading="{{ __('Uploading..') }}" data-uploaded="{{ __('Uploaded!') }}" data-uploading-failed="{{ __('Uploading failed!') }}">{{ __('Upload file [%s max]')|format(get_max_filesize()) }}</span>
+                        <input type="file" name="file" multiple="multiple" class="fileupload" data-hidden-id="property-hidden-{{ property.Property.id }}" data-container="property-uploaded-files-{{ property.Property.id }}" data-progress-id="property_progress_{{ property.Property.id }}" data-property="{{ property.Property.id }}" />
+                    </span>
+                    <div class="progress" id="property_progress_{{ property.Property.id }}">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                            0%
+                        </div>
+                    </div>
+                </div>
+                <div class="uploaded-files" id="property-uploaded-files-{{ property.Property.id }}" data-property-id="{{ property.Property.id }}">
+                    {{ property_show_uploads(attribute(values.property, property.Property.id), 'property-hidden-' ~ property.Property.id) }}
+                </div>
+            {% else %}
+                <input class="form-control element_property_control" id="property_{{ property.Property.id }}" type="text" name="property[{{ property.Property.id }}]" value="{{ attribute(values.property, property.Property.id) }}" />
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% else %}
+    {{ __('Category for this element does not have enabled any properties.') }}
+{% endfor %}
+<div id="uploaded-file-template" style="display: none;">
+    <div class="uploaded-file" data-file-id="__id__">
+        <div class="row">
+            <div class="col-md-3">{{ __('File name') }}</div>
+            <div class="col-md-9"><a href="/app/assets/download_file/__id__"><span class="bold">__name__</span></a> <span class="uploaded-file-remove" data-hidden-id="property-hidden-__property__" data-file-id="__id__"><i class="fa fa-trash"></i></span></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">{{ __('File size') }}</div>
+            <div class="col-md-9"><span class="bold">__size__</span></div>
+        </div>
+    </div>
+</div>
+{{ js('jquery.ui.widget', 'jquery.fileupload', 'jquery.fileupload-process') }}
+{{ css('jquery.fileupload', 'jquery.fileupload-ui') }}
+
+<script type="text/javascript">
+
+jQuery(document).ready(function () {
+    //Update fields
+    updateFileUploadFields();
+
+    jQuery('.fileupload').fileupload({
+        url: '{{ url("upload_file") }}',
+        //dataType: 'json',
+        done: function (e, data) {
+            //Get targets
+            var el = jQuery(e.target);
+            var elP = jQuery('.progress', el.parent().parent());
+            var elPB = jQuery('.progress-bar', elP);
+            var btn = jQuery('.fileinput-button span', el.parent().parent());
+            var hidden = jQuery('#' + el.data('hidden-id'));
+            var container = jQuery('#' + el.data('container'));
+
+            //Set text
+            btn.html(btn.data('uploaded'));
+
+            //Parse view
+            var r = jQuery.parseJSON(data.result);
+            var v = hidden.val().split(',') || {};
+            if (v.length < 10 && v.indexOf(r[0].FileUpload.id + '') == -1) {
+                //Add html to container
+                var html = jQuery('#uploaded-file-template').html();
+                html = html
+                    .replace(/__id__/g, r[0].FileUpload.id)
+                    .replace(/__name__/g, r[0].FileUpload.name)
+                    .replace(/__size__/g, format_filesize(r[0].FileUpload.size))
+                    .replace(/__property__/g, el.data('property'));
+                container.append(html);
+            }
+
+            //Update fields
+            updateFileUploadFields();
+        },
+        fail: function (e, data) {
+            //Get targets
+            var el = jQuery(e.target);
+            var elP = jQuery('.progress', el.parent().parent());
+            var elPB = jQuery('.progress-bar', elP);
+            var btn = jQuery('.fileinput-button span', el.parent().parent());
+
+            //Set default value
+            btn.html(btn.data('uploading-failed'));
+
+            //Update fields
+            updateFileUploadFields();
+        },
+        send: function (e, data) {
+            //Get targets
+            var el = jQuery(e.target);
+            var elP = jQuery('.progress', el.parent().parent());
+            var elPB = jQuery('.progress-bar', elP);
+            var btn = jQuery('.fileinput-button span', el.parent().parent());
+
+            //Set default value
+            btn.data('default-value', btn.html());
+
+            //Set text
+            btn.html(btn.data('uploading'));
+
+            //Update fields
+            updateFileUploadFields();
+        },
+        progress: function (e, data) {  
+            var progress = parseInt(data.loaded / data.total * 100, 10)
+
+            //Get targets
+            var el = jQuery(e.target);
+            var elP = jQuery('.progress', el.parent().parent());
+            var elPB = jQuery('.progress-bar', elP);
+            var btn = jQuery('.fileinput-button span', el.parent().parent());
+
+            //Set content view
+            elPB
+                .html(progress + '%')
+                .data('valuenow', progress)
+                .attr('style', 'width: ' + progress + '% !important;')
+                .show();
+            elP.show();
+        }
+    });
+
+    jQuery('body').on('click', '.uploaded-file-remove', function() {
+        var el = jQuery(this);
+        el.parent().parent().parent().slideUp(function() {
+            jQuery(this).remove();
+
+            //Update fields
+            updateFileUploadFields();
+        });
+    });
+
+    //Update file upload fields
+    function updateFileUploadFields() {
+        //Update fields
+        jQuery('.uploaded-files').each(function() {
+            var el = jQuery(this);
+            var resultEl = jQuery('#property-hidden-' + el.data('property-id'));
+
+            var ids = new Array();
+            jQuery('.uploaded-file', el).each(function() {
+                ids.push(jQuery(this).data('file-id'));
+            });
+            resultEl.val(ids.join(','));
+        });
+    }
+});
+</script>
