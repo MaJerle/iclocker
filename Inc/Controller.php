@@ -88,11 +88,24 @@ class Controller extends \Slim\Slim {
 		} else {
 			$this->view()->setData('template_prefix', '/');
 		}
+
+		//Check for index prefix
+		if ($this->config['slim']['index_prefix']) {
+    		$request_uri = preg_replace('/' . preg_quote($_SERVER['CONTEXT_PREFIX'], '/') . '/', '', $_SERVER['REQUEST_URI'], 1);
+    		$startText = '/index.php';
+			if (substr($request_uri, 0, strlen($startText)) != $startText) {
+				//Create new link and redirect there
+				$request_uri = $_SERVER['SCRIPT_NAME'] . $request_uri;
+
+				//Make redirection
+				header('Location: ' . $request_uri);
+				exit;
+			}
+		}
 	}
 
 	//Called from AUTH middleware
 	public function setLanguage($language = null) {
-		return;
 		//Invalidate first
 		if (isset($this->TranslateEntries)) {
 			unset($this->TranslateEntries);
@@ -139,6 +152,9 @@ class Controller extends \Slim\Slim {
 
 		//Set english language which is for sure used
 		$languages[] = 'en_US';
+
+		//FIX IT!
+		$languages = ['en_us'];
 
 		//Set proper language if possible
 		foreach ($languages as $language) {
@@ -198,6 +214,7 @@ class Controller extends \Slim\Slim {
 
 		//Set if ajax request
 		$this->view()->set('is_ajax', $this->request()->isAjax());
+		$this->view()->set('is_modal', $this->isModal());
 
 		//Output route params
 		$this->view()->set('route_params', $this->RouteParams);
@@ -738,5 +755,65 @@ class Controller extends \Slim\Slim {
     		setcookie('user', null, -1, '/');
     		unset($_COOKIE['user']);
     	}
+    }
+
+
+    ///////////////////////////////////
+    ///////////////////////////////////
+    ///////////////////////////////////
+    ///////////////////////////////////
+    ///////////////////////////////////
+    // View helper functions for controller
+    public function fa($name, $text = null) {
+        return '<i class="fa fa-' . $name . '">' . $text . '</i>';
+    }
+
+    //Returns number for model name
+    public function get_comments_type($modelName) {
+        switch (strtolower($modelName)) {       
+            case 'collection':
+                return Comment::MODEL_COLLECTION;
+            case 'category':
+                return Comment::MODEL_CATEGORY;
+            case 'element':
+                return Comment::MODEL_ELEMENT;
+            case 'property':
+                return Comment::MODEL_PROPERTY;
+            case 'product':
+                return Comment::MODEL_PRODUCT;
+            case 'order': 
+            case 'elementorder': 
+                return Comment::MODEL_ORDER;
+            case 'user':
+                return Comment::MODEL_USER;
+            default: 
+                return 0;
+        }
+
+        return 0;
+    }
+
+    //Returns event date time
+    //Created at: 2 minutes ago, etc
+    public function get_eventdatetime($datetimestring) {
+        if (!$datetimestring) {
+            return '';
+        }
+        $date = new \DateTime($datetimestring);
+        $display = $date->format('d.m.Y' . ' ' . 'H:i');
+        $original = $date->format(\DateTime::ISO8601);
+
+        return '<span class="event_datetime" data-datetime="' . $original . '">' . $display . '</span>';
+    }
+
+    //Returns event date time and user name
+    //Created at: 2 minutes ago, etc
+    public function get_event_user_datetime($user, $date) {
+        return sprintf(__('%s, %s'), $this->get_user_fullname($user), $this->get_eventdatetime($date));
+    }
+
+    //Returns user full name
+    public function get_user_fullname($user) {
+        return $user->first_name . ' ' . $user->last_name;
     }
 }
