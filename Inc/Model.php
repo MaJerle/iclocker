@@ -258,13 +258,18 @@ class Model {
 		$date = self::getDate();
 
 		//Remove fields if exists in data
-		foreach (['created_by', 'created_at', 'modified_by', 'modified_at'] as $f) {
+		$addDeletedAt = false;
+		foreach (['created_by', 'created_at', 'modified_by', 'modified_at', 'deleted_at'] as $f) {
 			if (!isset($tablecolumns[$f])) {
 				continue;
 			}
 			//Find field in fields array
 			$keyPos = array_search($f, $fields);
 			if ($keyPos !== false) {
+				if ($f == 'deleted_at') {
+					$addDeletedAt = true;
+				}
+
 				//Remove field
 				unset($fields[$keyPos]);
 				//Remove data
@@ -323,6 +328,17 @@ class Model {
 		if (isset($tablecolumns['modified_at']) && !in_array('modified_at', $fields)) {
 			//We will save created by
 			$fields[] = 'modified_at';
+
+			//Add value to all records
+			foreach ($data as &$d) {
+				$d[] = $date;
+			}
+		}
+
+		//Add deleted at option if not already
+		if (isset($tablecolumns['deleted_at']) && (!in_array('deleted_at', $fields) || $addDeletedAt)) {
+			//We will save created by
+			$fields[] = 'deleted_at';
 
 			//Add value to all records
 			foreach ($data as &$d) {
@@ -527,7 +543,6 @@ class Model {
 				}
 			}
 		}
-
 
 		//Add event to database
 		if (!$lastModifiedOnly) {

@@ -1,0 +1,40 @@
+{% if not is_ajax %}
+{% include 'header.html' %}
+<div id="ajax_target_div">
+{% endif %}
+			{{ flash('all')|raw }}
+			<form
+				method="POST"
+				class="form ajax form-horizontal" 
+				id="elements_add_form"
+			>
+				<div class="page-title">
+					<div class="title_left">
+						{{ __('Import elements') }}
+					</div>
+					<div class="title_right">
+						{{ form_buttons(action)|raw }}
+					</div>
+				</div>
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>{{ fa('database')|raw }} {{ __('Import') }}</h2>
+					</div>
+					<div class="x_content">
+						<div class="form-group">
+							<div class="col-md-12">
+								{{ __('Enter csv string separated with tabulator (\\t)') }}
+								{{ form_error('category_id')|raw }}
+							</div>
+							<div class="col-md-12">
+								<textarea name="CsvString">{{ values.CsvString }}</textarea>
+								{{ __('Required fields: name, quantity, warning_quantity, category, description. Other fields are property name and property value combinations and will be inserted only if connection between property name and category already exists. If category does not exists in database, new will be created without any property links') }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+{% if not is_ajax %}
+</div>
+{% include 'footer.html' %}
+{% endif %}

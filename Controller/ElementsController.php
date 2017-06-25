@@ -568,6 +568,149 @@ class ElementsController extends Base {
 	}
 
 	/**
+	 * Route /elements/import
+	 *
+	 * @param $app: Application context
+	 * @param $element_id: Element id to delete
+	 */
+	public function import($app, $collection_id = null) {
+		$collection_id = $app->validate($collection_id);
+
+		$values = $app->request()->post();
+		if ($values) {
+			$csvString = $values['CsvString'];
+			$lines = explode(PHP_EOL, $csvString);
+			$data = [];
+			foreach ($lines as $l) {
+				$data[] = str_getcsv($l, "\t");
+			}
+			$out = [];
+			if (count($data)) {
+				$topLine = $data[0];
+				foreach ($topLine as $k => $v) {
+					switch (strtolower($v)) {
+						case 'name':
+							$topLine[$k] = 'name'; break;
+						case 'desc':
+						case 'description':
+							$topLine[$k] = 'description'; break;
+						case 'quant':
+						case 'quantity':
+							$topLine[$k] = 'quantity'; break;
+						case 'quantity!':
+						case 'quant!':
+						case 'warning_quantity':
+							$topLine[$k] = 'warning_quantity'; break;
+						case 'category':
+							$topLine[$k] = 'category'; break;
+					}
+				}
+				unset($data[0]);
+				$categories = [];
+				foreach ($data as $entry) {
+					$min = min(count($entry), count($topLine));
+					$tmp = array_combine(array_slice($topLine, 0, $min), array_slice($entry, 0, $min));
+					if (isset($tmp['category'])) {
+						$tmp['category'] = strtolower($tmp['category']);
+						if (!isset($categories[$tmp['category']])) {
+							$categories[$tmp['category']] = 0;
+						}
+					}
+					$out[] = $tmp;
+				}
+
+				//Start by looking for categories listed for elements
+				$categoriesDb = Category::getCategories(null, null, [
+					'conditions' => [
+						'Category.name' => array_keys($categories)
+					],
+					'contain' => []
+				]);
+				//Set IDs to known categories from DB
+				foreach ($categoriesDb as $cat) {
+					$categories[strtolower($cat['Category']->name)] = $cat['Category']->id;
+				}
+				//Create categories from input and which are not existing in DB
+				foreach ($categories as $catName => $catId) {
+					if (!$catId) {
+						$categories[$catName] = Category::insert(['name' => $catName]);
+					}
+				}
+
+				//Get now all categories again first and format them to user successful value
+				$categories = Category::getCategories(null, null, [
+					'conditions' => [
+						'Category.name' => array_keys($categories)
+					],
+					'contain' => ['Property']
+				]);
+
+				//Format them correctly
+				$cats = [];
+				foreach ($categories as $k => $v) {
+					unset($v['CreatedBy'], $v['ModifiedBy']);
+					$cats[strtolower($v['Category']->name)] = $v;
+				}
+
+				$entriesSuccess = [];
+				$entriesFail = [];
+
+				//Start by writing entries to DB
+				$i = 1;
+				foreach ($out as $entry) {
+					$insertId = false;
+					if (isset($cats[$entry['category']])) {
+						$cat = $cats[$entry['category']];
+
+						//Save entry data first
+						$forEntry = array_merge($entry, ['property' => []]);
+
+						//Check element properties, ignore basic element values
+						foreach (['name', 'quantity', 'warning_quantity', 'category', 'description'] as $k) {
+							if (isset($entry[$k])) {
+								unset($entry[$k]);
+							}
+						}
+						
+						//Process remaining properties for element if anything exists
+						foreach ($entry as $propertyName => $propertyValue) {
+							//Check category properties
+							foreach ($cat['Property'] as $p) {
+								//Check if category property and entry property match
+								if (strtolower($p->name) == strtolower($propertyName)) {
+									//We have match between property and category here, merge them together and add to database
+									$forEntry['property'][$p->id] = $propertyValue;
+								}
+							}
+						}
+						$insertId = Element::insert($cat['Category']->id, $forEntry);
+					}
+					if ($insertId) {
+						$entriesSuccess[] = $i;
+					} else {
+						$entriesFail[] = $i;
+					}
+					$i++;
+				}
+
+				if (count($entriesSuccess) == count($out)) {
+					$app->flashSuccess(__('All entries successfully inserted!'));
+					$app->redirect($app->urlFor('elements_list'));
+				} else {
+					$app->flashNoteNow(sprintf(__('Number of entries inserted: %d/%d. Some entries (line(s): %s) were not inserted due to error.'), 
+						count($entriesSuccess), count($out), implode(', ', $entriesFail)
+					));
+				}
+			}
+		}
+
+		$app->view()->set('values', $values);
+
+		$app->setTitle(__('Import elements'));
+		return $app->render('elements_import.html');
+	}
+
+	/**
 	 * Route /elements/duplicate/:element_id
 	 *
 	 * @param $app: Application context

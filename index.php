@@ -72,6 +72,7 @@ $app->group('/app', function() use ($app) {
 		$app->get('/elements/duplicate/:element_id', Route('Elements', 'duplicate'))->name('elements_duplicate');
 		$app->any('/elements/order/:element_id', Route('Elements', 'order'))->name('elements_order');
 		$app->any('/elements/properties/:element_id', Route('Elements', 'properties'))->name('elements_properties');
+		$app->any('/elements/import', Route('Elements', 'import'))->name('elements_import');
 
 		//Categories
 		$app->get('/categories', Route('Categories', 'index'))->name('categories_list');

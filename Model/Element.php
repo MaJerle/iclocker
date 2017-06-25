@@ -182,7 +182,7 @@ class Element extends Model {
 	}
 
 	//Insert new element with properties/products to database
-	public static function insert($category_id, $data) {
+	public static function insert($category_id, $data, $onlyValidate = false) {
 		//Validate input data
 		if (!self::validateInsert($data)) {
 			return false;
@@ -190,6 +190,9 @@ class Element extends Model {
 		//Check for category
 		if (!Category::getCategory($category_id)) {
 			return false;
+		}
+		if ($onlyValidate) {
+			return true;
 		}
 
 		//Format useful data for insert from DATA
