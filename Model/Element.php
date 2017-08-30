@@ -198,6 +198,11 @@ class Element extends Model {
 		//Format useful data for insert from DATA
 		$insert = array_merge(parent::formatColumns(self::$__tableColumns, $data), ['category_id' => $category_id, 'collection_id' => parent::collection_id()]);
 
+		//Check quantity
+		if (isset($insert['warning_quantity']) && intval($insert['warning_quantity']) == 0) {
+			$insert['warning_quantity'] = 0;
+		}
+
 		//Add element into database
 		$insID = parent::insertData(new self(), $insert);
 

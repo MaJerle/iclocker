@@ -31,15 +31,15 @@ CREATE TABLE `categories` (
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `elements_count` int(11) NOT NULL
+  `elements_count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -54,13 +54,13 @@ CREATE TABLE `categories_properties` (
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL,
   `property_id` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,18 +74,18 @@ CREATE TABLE `collections` (
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(45) NOT NULL,
   `description` text,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `elements_count` int(11) NOT NULL,
-  `categories_count` int(11) NOT NULL,
-  `properties_count` int(11) NOT NULL,
-  `elementorders_count` int(11) NOT NULL,
-  `products_count` int(11) NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `elements_count` int(11) NOT NULL DEFAULT '0',
+  `categories_count` int(11) NOT NULL DEFAULT '0',
+  `properties_count` int(11) NOT NULL DEFAULT '0',
+  `elementorders_count` int(11) NOT NULL DEFAULT '0',
+  `products_count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -102,13 +102,13 @@ CREATE TABLE `comments` (
   `foreign_id` int(11) NOT NULL,
   `collection_id` int(11) NOT NULL,
   `model` int(11) NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -122,19 +122,19 @@ CREATE TABLE `elementorders` (
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `status` int(11) DEFAULT '1',
   `name` varchar(45) DEFAULT NULL,
-  `datecreated` datetime DEFAULT NULL,
-  `dateordered` datetime DEFAULT NULL,
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateordered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `collection_id` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `synced` int(11) NOT NULL DEFAULT '0',
   `quantity_type` int(11) NOT NULL DEFAULT '0',
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `orderelements_count` int(11) NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `orderelements_count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -149,13 +149,13 @@ CREATE TABLE `elementorders_properties` (
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `elementorder_id` int(11) NOT NULL,
   `property_id` int(11) NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -171,16 +171,16 @@ CREATE TABLE `elements` (
   `collection_id` int(11) NOT NULL,
   `name` varchar(45) CHARACTER SET latin1 NOT NULL,
   `description` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
-  `quantity` int(11) NOT NULL,
-  `warning_quantity` int(11) DEFAULT '0',
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '0',
+  `warning_quantity` int(11) NOT NULL DEFAULT '0',
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `copy_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `copy_id` int(11) NOT NULL DEFAULT '0',
   `revision_reason` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -196,14 +196,14 @@ CREATE TABLE `elements_products` (
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `product_id` int(11) NOT NULL,
   `element_id` int(11) NOT NULL,
-  `element_count` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
+  `element_count` int(11) NOT NULL DEFAULT '9',
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -219,13 +219,13 @@ CREATE TABLE `elements_properties` (
   `element_id` int(11) NOT NULL,
   `property_id` int(11) NOT NULL,
   `property_value` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -240,8 +240,12 @@ CREATE TABLE `events` (
   `type` int(11) NOT NULL,
   `model` varchar(32) NOT NULL,
   `foreign_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `created_by` int(11) NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -256,11 +260,13 @@ CREATE TABLE `files` (
   `name` varchar(255) NOT NULL,
   `mime` varchar(32) NOT NULL,
   `size` int(11) NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
   `deleted` int(11) NOT NULL,
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `servername` varchar(48) NOT NULL,
   `md5hash` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -283,13 +289,13 @@ CREATE TABLE `orderelements` (
   `elementorder_id` int(11) NOT NULL,
   `element_id` int(11) DEFAULT NULL,
   `collection_id` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -305,13 +311,13 @@ CREATE TABLE `products` (
   `name` varchar(45) DEFAULT NULL,
   `description` text,
   `quantity` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -326,14 +332,14 @@ CREATE TABLE `products_subproducts` (
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `product_id` int(11) NOT NULL,
   `subproduct_id` int(11) NOT NULL,
-  `subproduct_count` int(11) NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
+  `subproduct_count` int(11) NOT NULL DEFAULT '0',
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -350,14 +356,14 @@ CREATE TABLE `properties` (
   `description` text NOT NULL,
   `data_type` int(11) DEFAULT NULL,
   `unit` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
-  `propertychoices_count` int(11) NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `propertychoices_count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -372,13 +378,13 @@ CREATE TABLE `propertychoices` (
   `property_id` int(11) NOT NULL,
   `choice` varchar(45) DEFAULT NULL,
   `collection_id` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -393,7 +399,12 @@ CREATE TABLE `tokens` (
   `type` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -410,14 +421,14 @@ CREATE TABLE `users` (
   `access_group` int(11) NOT NULL DEFAULT '0',
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
   `deleted` int(11) DEFAULT '0',
-  `last_login` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL,
-  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lock_code` varchar(10) NOT NULL DEFAULT '1234',
   `dynamic_token` int(11) DEFAULT '0',
   `image` varchar(70) DEFAULT NULL
@@ -435,10 +446,12 @@ CREATE TABLE `usersettings` (
   `user_id` int(11) NOT NULL,
   `setting` varchar(32) NOT NULL,
   `value` varchar(32) NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `modified_at` datetime NOT NULL
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -452,13 +465,13 @@ CREATE TABLE `users_collections` (
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL,
   `collection_id` int(11) NOT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by` int(11) NOT NULL DEFAULT '0',
-  `modified_at` datetime DEFAULT NULL
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -472,11 +485,13 @@ CREATE TABLE `usertokens` (
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `token` varchar(64) DEFAULT NULL,
   `dynamic_token` varchar(64) NOT NULL,
-  `validto` datetime DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `modified_by` int(11) DEFAULT NULL,
-  `modified_at` datetime NOT NULL,
+  `validto` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_by` int(11) NOT NULL DEFAULT '0',
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_by` int(11) NOT NULL DEFAULT '0',
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL,
   `ip` varchar(20) DEFAULT NULL,
   `deleted` int(11) DEFAULT '0',

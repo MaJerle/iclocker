@@ -292,13 +292,17 @@ class Model {
 		}
 
 		//Add created by option if not already
-		if (self::$app->user_logged && isset($tablecolumns['created_by']) && !in_array('created_by', $fields)) {
+		if (isset($tablecolumns['created_by']) && !in_array('created_by', $fields)) {
 			//We will save created by
 			$fields[] = 'created_by';
 
 			//Add value to all records
 			foreach ($data as &$d) {
-				$d[] = self::userid();
+				if (self::$app->user_logged) {
+					$d[] = self::userid();
+				} else {
+					$d[] = 0;
+				}
 			}
 		}
 
