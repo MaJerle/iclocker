@@ -50,7 +50,7 @@
 							</label>
 							<div class="col-md-9">
 								<select class="form-control" name="element_id" id="orderelementElement">
-									<option value="">{{ __('Choose from dropdown') }}</option>
+									<option value="0">{{ __('Choose from dropdown') }}</option>
 								{% for element in elements %}
 									<option data-number="{{ element.ElementProperty.property_value }}" data-description="{{ element.Element.description }}" value="{{ element.Element.id }}"{% if element.Element.id == values.element_id %} selected="selected"{% endif %}>{{ element.Element.name }}</option>
 								{% endfor %}

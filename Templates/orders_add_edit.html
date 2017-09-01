@@ -48,7 +48,7 @@
 							</label>
 							<div class="col-md-9">
 								<select class="form-control" name="property[]" id="orderProperty">
-									<option value="">{{ __('Choose property') }}</option>
+									<option value="0">{{ __('Choose property') }}</option>
 								{% for property in properties %}
 									<option value="{{ property.Property.id }}"{% if property.Property.id in values.property %} selected="selected"{% endif %}>{{ property.Property.name }}</option>
 								{% endfor %}
