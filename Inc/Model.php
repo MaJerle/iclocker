@@ -661,7 +661,7 @@ class Model {
 		if (!empty($dependant)) {
 			//Get all records with this conditions for deleting
 			$obj->includeCreatedBy = false;
-			$records = $this->selectEx($obj, ['conditions' => $conditions, 'contain' => []]);
+			$records = self::$db->selectEx($obj, ['conditions' => $conditions, 'contain' => []]);
 
 			//Get primary keys for all that objects
 			$ids = self::$db->getIds($records, $obj->modelName . '.' . $obj->primaryKey);
