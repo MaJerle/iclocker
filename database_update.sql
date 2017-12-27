@@ -1,4 +1,4 @@
-ALTER TABLE `categories` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `categories` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `categories` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `categories` MODIFY COLUMN `collection_id` int(11) NOT NULL;
 ALTER TABLE `categories` MODIFY COLUMN `name` varchar(255) NOT NULL;
@@ -12,7 +12,7 @@ ALTER TABLE `categories` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CU
 ALTER TABLE `categories` MODIFY COLUMN `description` text;
 ALTER TABLE `categories` MODIFY COLUMN `elements_count` int(11) NOT NULL DEFAULT '0';
 
-ALTER TABLE `categories_properties` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `categories_properties` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `categories_properties` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `categories_properties` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `categories_properties` MODIFY COLUMN `category_id` int(11) NOT NULL;
@@ -25,7 +25,7 @@ ALTER TABLE `categories_properties` MODIFY COLUMN `modified_at` datetime NOT NUL
 ALTER TABLE `categories_properties` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `categories_properties` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `collections` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `collections` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `collections` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `collections` MODIFY COLUMN `name` varchar(45) NOT NULL;
 ALTER TABLE `collections` MODIFY COLUMN `description` text;
@@ -42,7 +42,7 @@ ALTER TABLE `collections` MODIFY COLUMN `properties_count` int(11) NOT NULL DEFA
 ALTER TABLE `collections` MODIFY COLUMN `elementorders_count` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `collections` MODIFY COLUMN `products_count` int(11) NOT NULL DEFAULT '0';
 
-ALTER TABLE `comments` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `comments` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `comments` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `comments` MODIFY COLUMN `parent_id` int(11) NOT NULL;
 ALTER TABLE `comments` MODIFY COLUMN `comment` text NOT NULL;
@@ -57,7 +57,7 @@ ALTER TABLE `comments` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAULT CUR
 ALTER TABLE `comments` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `comments` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `elementorders` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `elementorders` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `elementorders` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elementorders` MODIFY COLUMN `status` int(11) DEFAULT '1';
 ALTER TABLE `elementorders` MODIFY COLUMN `name` varchar(45) DEFAULT NULL;
@@ -75,7 +75,7 @@ ALTER TABLE `elementorders` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT 
 ALTER TABLE `elementorders` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE `elementorders` MODIFY COLUMN `orderelements_count` int(11) NOT NULL DEFAULT '0';
 
-ALTER TABLE `elementorders_properties` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `elementorders_properties` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `elementorders_properties` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elementorders_properties` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elementorders_properties` MODIFY COLUMN `elementorder_id` int(11) NOT NULL DEFAULT '0';
@@ -88,7 +88,7 @@ ALTER TABLE `elementorders_properties` MODIFY COLUMN `modified_at` datetime NOT 
 ALTER TABLE `elementorders_properties` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elementorders_properties` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `elements` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `elements` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `elements` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements` MODIFY COLUMN `category_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
@@ -106,7 +106,7 @@ ALTER TABLE `elements` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURR
 ALTER TABLE `elements` MODIFY COLUMN `copy_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements` MODIFY COLUMN `revision_reason` varchar(255) NOT NULL;
 
-ALTER TABLE `elements_products` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `elements_products` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `elements_products` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_products` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_products` MODIFY COLUMN `product_id` int(11) NOT NULL DEFAULT '0';
@@ -120,7 +120,7 @@ ALTER TABLE `elements_products` MODIFY COLUMN `modified_at` datetime NOT NULL DE
 ALTER TABLE `elements_products` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_products` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `elements_properties` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `elements_properties` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `elements_properties` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_properties` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_properties` MODIFY COLUMN `element_id` int(11) NOT NULL DEFAULT '0';
@@ -134,7 +134,7 @@ ALTER TABLE `elements_properties` MODIFY COLUMN `modified_at` datetime NOT NULL 
 ALTER TABLE `elements_properties` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `elements_properties` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `events` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `events` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `events` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `events` MODIFY COLUMN `type` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `events` MODIFY COLUMN `model` varchar(32) NOT NULL;
@@ -146,7 +146,7 @@ ALTER TABLE `events` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAULT CURRE
 ALTER TABLE `events` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `events` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `files` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `files` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `files` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `files` MODIFY COLUMN `name` varchar(255) NOT NULL;
 ALTER TABLE `files` MODIFY COLUMN `mime` varchar(32) NOT NULL;
@@ -161,7 +161,7 @@ ALTER TABLE `files` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT
 ALTER TABLE `files` MODIFY COLUMN `servername` varchar(48) NOT NULL;
 ALTER TABLE `files` MODIFY COLUMN `md5hash` varchar(32) NOT NULL;
 
-ALTER TABLE `orderelements` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `orderelements` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `orderelements` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `orderelements` MODIFY COLUMN `number` varchar(20) NOT NULL;
 ALTER TABLE `orderelements` MODIFY COLUMN `desiredquantity` int(11) NOT NULL DEFAULT '0';
@@ -180,7 +180,7 @@ ALTER TABLE `orderelements` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAUL
 ALTER TABLE `orderelements` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `orderelements` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `products` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `products` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `products` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `products` MODIFY COLUMN `collection_id` int(11) NOT NULL;
 ALTER TABLE `products` MODIFY COLUMN `name` varchar(45) DEFAULT NULL;
@@ -194,7 +194,7 @@ ALTER TABLE `products` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAULT CUR
 ALTER TABLE `products` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `products` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `products_subproducts` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `products_subproducts` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `products_subproducts` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `products_subproducts` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `products_subproducts` MODIFY COLUMN `product_id` int(11) NOT NULL DEFAULT '0';
@@ -208,7 +208,7 @@ ALTER TABLE `products_subproducts` MODIFY COLUMN `modified_at` datetime NOT NULL
 ALTER TABLE `products_subproducts` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `products_subproducts` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `properties` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `properties` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `properties` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `properties` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `properties` MODIFY COLUMN `name` varchar(255) NOT NULL;
@@ -224,7 +224,7 @@ ALTER TABLE `properties` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0'
 ALTER TABLE `properties` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE `properties` MODIFY COLUMN `propertychoices_count` int(11) NOT NULL DEFAULT '0';
 
-ALTER TABLE `propertychoices` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `propertychoices` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `propertychoices` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `propertychoices` MODIFY COLUMN `property_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `propertychoices` MODIFY COLUMN `choice` varchar(45) DEFAULT NULL;
@@ -237,7 +237,7 @@ ALTER TABLE `propertychoices` MODIFY COLUMN `modified_at` datetime NOT NULL DEFA
 ALTER TABLE `propertychoices` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `propertychoices` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `tokens` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `tokens` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `tokens` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `tokens` MODIFY COLUMN `type` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `tokens` MODIFY COLUMN `user_id` int(11) NOT NULL DEFAULT '0';
@@ -249,7 +249,7 @@ ALTER TABLE `tokens` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAULT CURRE
 ALTER TABLE `tokens` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `tokens` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `users` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `users` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `users` MODIFY COLUMN `username` varchar(45) NOT NULL;
 ALTER TABLE `users` MODIFY COLUMN `password` varchar(64) NOT NULL;
@@ -268,7 +268,7 @@ ALTER TABLE `users` MODIFY COLUMN `lock_code` varchar(10) NOT NULL DEFAULT '1234
 ALTER TABLE `users` MODIFY COLUMN `dynamic_token` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `users` MODIFY COLUMN `image` varchar(70) DEFAULT NULL;
 
-ALTER TABLE `usersettings` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `usersettings` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `usersettings` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `usersettings` MODIFY COLUMN `user_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `usersettings` MODIFY COLUMN `setting` varchar(32) NOT NULL;
@@ -280,7 +280,7 @@ ALTER TABLE `usersettings` MODIFY COLUMN `modified_at` datetime NOT NULL DEFAULT
 ALTER TABLE `usersettings` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `usersettings` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `users_collections` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `users_collections` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users_collections` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `users_collections` MODIFY COLUMN `user_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `users_collections` MODIFY COLUMN `collection_id` int(11) NOT NULL DEFAULT '0';
@@ -292,7 +292,7 @@ ALTER TABLE `users_collections` MODIFY COLUMN `modified_at` datetime NOT NULL DE
 ALTER TABLE `users_collections` MODIFY COLUMN `deleted_by` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `users_collections` MODIFY COLUMN `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `usertokens` MODIFY COLUMN `id` int(11) NOT NULL;
+ALTER TABLE `usertokens` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `usertokens` MODIFY COLUMN `revision_id` int(11) NOT NULL DEFAULT '0';
 ALTER TABLE `usertokens` MODIFY COLUMN `token` varchar(64) DEFAULT NULL;
 ALTER TABLE `usertokens` MODIFY COLUMN `dynamic_token` varchar(64) NOT NULL;
