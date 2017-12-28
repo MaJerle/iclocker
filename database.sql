@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `categories` (
 --
 
 CREATE TABLE `categories_properties` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `categories_properties` (
 --
 
 CREATE TABLE `collections` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(45) NOT NULL,
   `description` text,
@@ -95,7 +95,7 @@ CREATE TABLE `collections` (
 --
 
 CREATE TABLE `comments` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `parent_id` int(11) NOT NULL,
   `comment` text NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `elementorders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `status` int(11) DEFAULT '1',
   `name` varchar(45) DEFAULT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE `elementorders` (
 --
 
 CREATE TABLE `elementorders_properties` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `elementorder_id` int(11) NOT NULL DEFAULT '0',
@@ -165,7 +165,7 @@ CREATE TABLE `elementorders_properties` (
 --
 
 CREATE TABLE `elements` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `category_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
@@ -191,7 +191,7 @@ CREATE TABLE `elements` (
 --
 
 CREATE TABLE `elements_products` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `product_id` int(11) NOT NULL DEFAULT '0',
@@ -213,7 +213,7 @@ CREATE TABLE `elements_products` (
 --
 
 CREATE TABLE `elements_properties` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `element_id` int(11) NOT NULL DEFAULT '0',
@@ -235,7 +235,7 @@ CREATE TABLE `elements_properties` (
 --
 
 CREATE TABLE `events` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
   `model` varchar(32) NOT NULL,
@@ -255,7 +255,7 @@ CREATE TABLE `events` (
 --
 
 CREATE TABLE `files` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `mime` varchar(32) NOT NULL,
@@ -278,7 +278,7 @@ CREATE TABLE `files` (
 --
 
 CREATE TABLE `orderelements` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `number` varchar(20) NOT NULL,
   `desiredquantity` int(11) NOT NULL DEFAULT '0',
@@ -305,7 +305,7 @@ CREATE TABLE `orderelements` (
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
@@ -327,7 +327,7 @@ CREATE TABLE `products` (
 --
 
 CREATE TABLE `products_subproducts` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `product_id` int(11) NOT NULL DEFAULT '0',
@@ -349,7 +349,7 @@ CREATE TABLE `products_subproducts` (
 --
 
 CREATE TABLE `properties` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
@@ -373,7 +373,7 @@ CREATE TABLE `properties` (
 --
 
 CREATE TABLE `propertychoices` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `property_id` int(11) NOT NULL DEFAULT '0',
   `choice` varchar(45) DEFAULT NULL,
@@ -394,7 +394,7 @@ CREATE TABLE `propertychoices` (
 --
 
 CREATE TABLE `tokens` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -414,7 +414,7 @@ CREATE TABLE `tokens` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `username` varchar(45) NOT NULL,
   `password` varchar(64) NOT NULL,
@@ -441,7 +441,7 @@ CREATE TABLE `users` (
 --
 
 CREATE TABLE `usersettings` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
   `setting` varchar(32) NOT NULL,
@@ -461,7 +461,7 @@ CREATE TABLE `usersettings` (
 --
 
 CREATE TABLE `users_collections` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
   `collection_id` int(11) NOT NULL DEFAULT '0',
@@ -481,7 +481,7 @@ CREATE TABLE `users_collections` (
 --
 
 CREATE TABLE `usertokens` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `revision_id` int(11) NOT NULL DEFAULT '0',
   `token` varchar(64) DEFAULT NULL,
   `dynamic_token` varchar(64) NOT NULL,
