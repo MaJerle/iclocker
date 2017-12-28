@@ -107,8 +107,8 @@ if (isset($siteConfig['database'])) {
 }
 
 //Merge email
-if (isset($siteConfig['database'])) {
-    $config['database'] = array_merge_recursive($config['mail'], $siteConfig['database']);
+if (isset($siteConfig['mail'])) {
+    $config['mail'] = array_merge_recursive($config['mail'], $siteConfig['database']);
 }
 
 //Check site title
