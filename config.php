@@ -103,12 +103,16 @@ $siteConfig = require 'config_site.php';
 
 //Merge database
 if (isset($siteConfig['database'])) {
-    $config['database'] = array_merge_recursive($config['database'], $siteConfig['database']);
+    foreach ($siteConfig['database'] as $k => $v) {
+        $config['database'][$k] = $v;
+    }
 }
 
 //Merge email
 if (isset($siteConfig['mail'])) {
-    $config['mail'] = array_merge_recursive($config['mail'], $siteConfig['database']);
+    foreach ($siteConfig['mail'] as $k => $v) {
+        $config['mail'][$k] = $v;
+    }
 }
 
 //Check site title
