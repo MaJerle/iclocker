@@ -39,7 +39,8 @@ CREATE TABLE `categories` (
   `deleted_by` int(11) NOT NULL DEFAULT '0',
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
-  `elements_count` int(11) NOT NULL DEFAULT '0'
+  `elements_count` int(11) NOT NULL DEFAULT '0',
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -60,7 +61,8 @@ CREATE TABLE `categories_properties` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -85,7 +87,8 @@ CREATE TABLE `collections` (
   `categories_count` int(11) NOT NULL DEFAULT '0',
   `properties_count` int(11) NOT NULL DEFAULT '0',
   `elementorders_count` int(11) NOT NULL DEFAULT '0',
-  `products_count` int(11) NOT NULL DEFAULT '0'
+  `products_count` int(11) NOT NULL DEFAULT '0',
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -108,7 +111,8 @@ CREATE TABLE `comments` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -134,7 +138,8 @@ CREATE TABLE `elementorders` (
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `orderelements_count` int(11) NOT NULL DEFAULT '0'
+  `orderelements_count` int(11) NOT NULL DEFAULT '0',
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -155,7 +160,8 @@ CREATE TABLE `elementorders_properties` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -181,7 +187,8 @@ CREATE TABLE `elements` (
   `deleted_by` int(11) NOT NULL DEFAULT '0',
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `copy_id` int(11) NOT NULL DEFAULT '0',
-  `revision_reason` varchar(255) NOT NULL
+  `revision_reason` varchar(255) NOT NULL,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -203,7 +210,8 @@ CREATE TABLE `elements_products` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -225,7 +233,8 @@ CREATE TABLE `elements_properties` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -245,7 +254,8 @@ CREATE TABLE `events` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -268,7 +278,8 @@ CREATE TABLE `files` (
   `deleted_by` int(11) NOT NULL DEFAULT '0',
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `servername` varchar(48) NOT NULL,
-  `md5hash` varchar(32) NOT NULL
+  `md5hash` varchar(32) NOT NULL,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -295,7 +306,8 @@ CREATE TABLE `orderelements` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -317,7 +329,8 @@ CREATE TABLE `products` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -339,7 +352,8 @@ CREATE TABLE `products_subproducts` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -363,7 +377,8 @@ CREATE TABLE `properties` (
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
   `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `propertychoices_count` int(11) NOT NULL DEFAULT '0'
+  `propertychoices_count` int(11) NOT NULL DEFAULT '0',
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -384,7 +399,8 @@ CREATE TABLE `propertychoices` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -404,7 +420,8 @@ CREATE TABLE `tokens` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -431,7 +448,8 @@ CREATE TABLE `users` (
   `last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lock_code` varchar(10) NOT NULL DEFAULT '1234',
   `dynamic_token` int(11) NOT NULL DEFAULT '0',
-  `image` varchar(70) DEFAULT NULL
+  `image` varchar(70) DEFAULT NULL,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -451,7 +469,8 @@ CREATE TABLE `usersettings` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -471,7 +490,8 @@ CREATE TABLE `users_collections` (
   `modified_by` int(11) NOT NULL DEFAULT '0',
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_by` int(11) NOT NULL DEFAULT '0',
-  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `deleted_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -496,7 +516,8 @@ CREATE TABLE `usertokens` (
   `ip` varchar(20) DEFAULT NULL,
   `deleted` int(11) NOT NULL DEFAULT '0',
   `next_token` varchar(48) DEFAULT NULL,
-  `invalidated` int(11) NOT NULL DEFAULT '0'
+  `invalidated` int(11) NOT NULL DEFAULT '0',
+  primary key (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -507,41 +528,25 @@ CREATE TABLE `usertokens` (
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`,`collection_id`),
   ADD KEY `fk_categories_collections1_idx` (`collection_id`);
 
 --
 -- Indexes for table `categories_properties`
 --
 ALTER TABLE `categories_properties`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_categories_has_properties_properties1_idx` (`property_id`),
   ADD KEY `fk_categories_has_properties_categories_idx` (`category_id`);
-
---
--- Indexes for table `collections`
---
-ALTER TABLE `collections`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `elementorders`
 --
 ALTER TABLE `elementorders`
-  ADD PRIMARY KEY (`id`,`collection_id`),
   ADD KEY `fk_orders_collections1_idxx` (`collection_id`);
 
 --
 -- Indexes for table `elementorders_properties`
 --
 ALTER TABLE `elementorders_properties`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `elementorder_id` (`elementorder_id`),
   ADD KEY `property_id` (`property_id`);
 
@@ -549,7 +554,6 @@ ALTER TABLE `elementorders_properties`
 -- Indexes for table `elements`
 --
 ALTER TABLE `elements`
-  ADD PRIMARY KEY (`id`,`category_id`,`collection_id`),
   ADD KEY `fk_elements_categories1_idx` (`category_id`),
   ADD KEY `fk_elements_collections1_idx` (`collection_id`);
 
@@ -557,7 +561,6 @@ ALTER TABLE `elements`
 -- Indexes for table `elements_products`
 --
 ALTER TABLE `elements_products`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_products_has_elements_elements1` (`element_id`),
   ADD KEY `product_id` (`product_id`,`element_id`);
 
@@ -565,27 +568,13 @@ ALTER TABLE `elements_products`
 -- Indexes for table `elements_properties`
 --
 ALTER TABLE `elements_properties`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_elements_has_properties_properties1_idx` (`property_id`),
   ADD KEY `fk_elements_has_properties_elements1_idx` (`element_id`);
-
---
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `files`
---
-ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `orderelements`
 --
 ALTER TABLE `orderelements`
-  ADD PRIMARY KEY (`id`,`elementorder_id`,`collection_id`),
   ADD KEY `fk_orderelements_orders1_idx` (`elementorder_id`),
   ADD KEY `fk_orderelements_collections1_idx` (`collection_id`);
 
@@ -593,54 +582,31 @@ ALTER TABLE `orderelements`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`,`collection_id`),
   ADD KEY `fk_products_collections1_idx` (`collection_id`);
 
 --
 -- Indexes for table `products_subproducts`
 --
 ALTER TABLE `products_subproducts`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`,`subproduct_id`);
 
 --
 -- Indexes for table `properties`
 --
 ALTER TABLE `properties`
-  ADD PRIMARY KEY (`id`,`collection_id`),
   ADD KEY `fk_properties_collections1_idx` (`collection_id`);
 
 --
 -- Indexes for table `propertychoices`
 --
 ALTER TABLE `propertychoices`
-  ADD PRIMARY KEY (`id`,`property_id`,`collection_id`),
   ADD KEY `fk_propertychoices_properties1_idx` (`property_id`),
   ADD KEY `fk_propertychoices_collections1_idx` (`collection_id`);
-
---
--- Indexes for table `tokens`
---
-ALTER TABLE `tokens`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `usersettings`
---
-ALTER TABLE `usersettings`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users_collections`
 --
 ALTER TABLE `users_collections`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_table1_has_collections_collections1_idx` (`collection_id`),
   ADD KEY `fk_table1_has_collections_table11_idx` (`user_id`);
 
@@ -648,118 +614,8 @@ ALTER TABLE `users_collections`
 -- Indexes for table `usertokens`
 --
 ALTER TABLE `usertokens`
-  ADD PRIMARY KEY (`id`,`user_id`),
   ADD KEY `fk_usertokens_users1_idx` (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1426;
---
--- AUTO_INCREMENT for table `categories_properties`
---
-ALTER TABLE `categories_properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2364;
---
--- AUTO_INCREMENT for table `collections`
---
-ALTER TABLE `collections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
---
--- AUTO_INCREMENT for table `elementorders`
---
-ALTER TABLE `elementorders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT for table `elementorders_properties`
---
-ALTER TABLE `elementorders_properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `elements`
---
-ALTER TABLE `elements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4176;
---
--- AUTO_INCREMENT for table `elements_products`
---
-ALTER TABLE `elements_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10329;
---
--- AUTO_INCREMENT for table `elements_properties`
---
-ALTER TABLE `elements_properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38317;
---
--- AUTO_INCREMENT for table `events`
---
-ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1500;
---
--- AUTO_INCREMENT for table `files`
---
-ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT for table `orderelements`
---
-ALTER TABLE `orderelements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
---
--- AUTO_INCREMENT for table `products_subproducts`
---
-ALTER TABLE `products_subproducts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `properties`
---
-ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
---
--- AUTO_INCREMENT for table `propertychoices`
---
-ALTER TABLE `propertychoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
---
--- AUTO_INCREMENT for table `tokens`
---
-ALTER TABLE `tokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT for table `usersettings`
---
-ALTER TABLE `usersettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `users_collections`
---
-ALTER TABLE `users_collections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
---
--- AUTO_INCREMENT for table `usertokens`
---
-ALTER TABLE `usertokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=783;
+  
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
