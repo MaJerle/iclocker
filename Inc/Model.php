@@ -703,7 +703,7 @@ class Model {
 						$modelName = '\Model\\' . $d['modelName'];
 						$o = new $modelName;
 						$c = [$d['foreignKey'] => $ids];
-						$this->deleteData($o, $c);
+						self::deleteData($o, $c);
 					} catch (\Exception $e) {
 
 					}
